@@ -9,14 +9,16 @@ public class Product {
 	
 	int id;			//
 	int code;		// product code (can be replaced with name)
+	int price;		// price of product
 	
 	// Constructors
 	public Product (){
 	}
 	
-	public Product(int id, int number) {
+	public Product(int id, int code, int price) {
 		this.id =id;
-		code = number;
+		this.code = code;
+		this.price = price;
 	}
 	
 	// Setters
@@ -28,6 +30,10 @@ public class Product {
 		code = number;
 	}
 	
+	public void setPrice(int amount) {
+		price = amount;
+	}
+	
 	// Getters
 	public int getId() {
 		return id;
@@ -35,6 +41,10 @@ public class Product {
 	
 	public int getCode() {
 		return code;
+	}
+	
+	public int getPrice() {
+		return price;
 	}
 
 }
