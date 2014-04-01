@@ -8,12 +8,12 @@ package com.wanyama.model;
 public class Stall {
 	
 	int id;
-	int table_number;
+	int stall_number;
 	
 	// constructor
 	public Stall(int id, int number) {
 		this.id = id;
-		table_number = number;
+		stall_number = number;
 	}
 	
 	// Setters
@@ -21,7 +21,7 @@ public class Stall {
 		this.id = id;
 	}
 	public void setNumber(int number){
-		table_number = number;
+		stall_number = number;
 	}
 	
 	// Getters
@@ -29,6 +29,6 @@ public class Stall {
 		return id;
 	}
 	public int getNumber(){
-		return table_number;
+		return stall_number;
 	}
 }
