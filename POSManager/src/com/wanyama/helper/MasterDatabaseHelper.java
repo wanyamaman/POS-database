@@ -1,13 +1,17 @@
 package com.wanyama.helper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import com.wanyama.model.Product;
@@ -16,7 +20,7 @@ import com.wanyama.model.Stall;
 public class MasterDatabaseHelper extends SQLiteOpenHelper {
 
 	// Logcat tag
-	private static final String LOG = "MasterDbHelper";
+	private static final String LOG = MasterDatabaseHelper.class.getName();
 	
 	// Database Version
 	private static final int DATABASE_VERSION = 1;
@@ -31,6 +35,7 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	
 	//Shared Column Names
 	private static final String KEY_ID = "id";
+//	private static final String KEY_CREATED_AT = "created_at";
 	
 	// Stalls table column names
 	private static final String KEY_STALL_NUMBER = "stall_number";
@@ -164,7 +169,7 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	
-	//creating a product INCOMPLETE
+	//creating a product 
 	public long createProduct(Product item){
 		SQLiteDatabase db = this.getWritableDatabase();
 		
@@ -177,5 +182,86 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 		return product_id;
 		
 	}
+	
+	// Fetch all products
+	public List<Product> getAllProducts() {
+		List<Product> items = new ArrayList<Product>();
+		String selectQuery = " SELECT * FROM " + TABLE_PRODUCTS;
+		
+		Log.e(LOG, selectQuery);
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor c = db.rawQuery(selectQuery, null);
+		
+		// iterate through all rows
+		if (c.moveToFirst()) {
+			do {
+				Product item = new Product(c.getInt((c.getColumnIndex(KEY_ID))), c.getInt(c.getColumnIndex(KEY_PRODUCT_CODE)),
+						c.getInt(c.getColumnIndex((KEY_PRODUCT_PRICE))));
+				
+				// add product to list
+				items.add(item);
+			}while (c.moveToNext());
+		}
+		
+		return items;
+	}
+	
+	// Updating a Product
+	public int updateProduct(Product item) {
+		SQLiteDatabase db =  this.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_PRODUCT_CODE, item.getCode());
+		values.put(KEY_PRODUCT_PRICE, item.getPrice());
+		
+		//update row
+		return db.update(TABLE_PRODUCTS, values, KEY_ID + " = ?", new String[] { String.valueOf(item.getId())});
+	}
+	
+	// 
+	public long makePurchase(long stall_id, long product_id) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_STALL_ID, stall_id);
+		values.put(KEY_PRODUCT_ID, product_id);
+//		values.put(KEY_CREATED_AT,  getDateTime());
+		
+		long _id = db.insert(TABLE_PURCHASE, null, values);
+		
+		return _id;
+	}
+	
+	// delete an order, must be approved by master (TO BE ADDED)
+	// needs verification
+	public int removePurchase(long id, long product_id) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_PRODUCT_ID, product_id);
+		
+		//updating row
+		return db.update(TABLE_STALLS, values, KEY_ID + " = ?", new String[] { String.valueOf(id)});
+	}
+	
+	/******* IMPLEMENT LATER
+	// transaction time
+	private String getDateTime() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+	**********/
+	
+	// close database
+	public void closeDB() {
+		SQLiteDatabase db = this.getReadableDatabase();
+		if (db != null && db.isOpen())
+			db.close();
+	}
+	// implement later: 
+	// deleting a product from the list of product removes product from purchase table
+	// deleting a stall, removes all purchases from that stall on the purchase table
 
 }

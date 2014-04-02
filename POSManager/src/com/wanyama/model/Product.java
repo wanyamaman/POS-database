@@ -12,8 +12,8 @@ public class Product {
 	int price;		// price of product
 	
 	// Constructors
-	public Product (){
-	}
+//	public Product (){
+//	}
 	
 	public Product(int id, int code, int price) {
 		this.id =id;
