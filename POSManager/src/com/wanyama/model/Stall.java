@@ -9,11 +9,13 @@ public class Stall {
 	
 	int id;
 	int stall_number;
+	int balance;
 	
 	// constructor
-	public Stall(int id, int number) {
+	public Stall(int id, int number, int balance) {
 		this.id = id;
 		stall_number = number;
+		this.balance = balance;
 	}
 	
 	// Setters
@@ -23,6 +25,9 @@ public class Stall {
 	public void setNumber(int number){
 		stall_number = number;
 	}
+	public void setBalance(int amount){
+		balance = amount;
+	}
 	
 	// Getters
 	public int getId(){
@@ -30,5 +35,8 @@ public class Stall {
 	}
 	public int getNumber(){
 		return stall_number;
+	}
+	public int getBalance(){
+		return balance;
 	}
 }
