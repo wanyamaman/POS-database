@@ -1,5 +1,6 @@
 package com.wanyama.helper;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -23,7 +24,8 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	private static final String KEY_ID = "id";
 	
 	// Stalls table column names
-	private static final String KEY_TABLE_NUMBER = "stall_number";
+	private static final String KEY_STALL_NUMBER = "stall_number";
+	private static final String KEY_STALL_BALANCE = "stall_balance";
 	
 	// Products table column names
 	private static final String KEY_PRODUCT_CODE = "product_code";
@@ -37,7 +39,7 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	// SQL Create tables statement
 	// STALL table
 	private static final String CREATE_TABLE_STALLS = "CREATE TABLE "+ TABLE_STALLS+ "("+ KEY_ID+ " INTEGER PRIMARY KEY,"
-			+ KEY_TABLE_NUMBER+ " INTEGER"+");";
+			+ KEY_STALL_NUMBER+ " INTEGER,"+ KEY_STALL_BALANCE+");";
 	
 	// PRODUCTS table
 	private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "+ TABLE_PRODUCTS+ "("+ KEY_ID+ " INTEGER PRIMERY KEY,"
@@ -47,15 +49,31 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE_PURCHASE = "CREATE TABLE " + TABLE_PURCHASE+ "("+ KEY_ID+ " INTEGER PRIMARY KEY,"
 			+ KEY_STALL_ID+ " INTEGER,"+ KEY_PRODUCT_ID+ " INTEGER"+ ");";
 	
+	// Constructor
+	public MasterDatabaseHelper(Context ctx){
+		super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+	}
+	
+	// create database tables
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
+		// Create tables
+		db.execSQL(CREATE_TABLE_PRODUCTS);
+		db.execSQL(CREATE_TABLE_STALLS);
+		db.execSQL(CREATE_TABLE_PURCHASE);
 
 	}
 
+	//upgrade database tables
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
+		// delete older tables before upgrading
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_STALLS);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+		
+		// create new tables
+		onCreate(db);
 
 	}
 
