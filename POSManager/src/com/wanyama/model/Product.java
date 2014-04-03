@@ -7,7 +7,7 @@ package com.wanyama.model;
  */
 public class Product {
 	
-	int id;			//
+	long id;			//
 	int code;		// product code (can be replaced with name)
 	int price;		// price of product
 	
@@ -15,14 +15,19 @@ public class Product {
 //	public Product (){
 //	}
 	
-	public Product(int id, int code, int price) {
+	public Product(int code, int price) {
+		this.code = code;
+		this.price = price;
+	}
+	
+	public Product(long id, int code, int price) {
 		this.id =id;
 		this.code = code;
 		this.price = price;
 	}
 	
 	// Setters
-	public void setID (int id) {
+	public void setID (long id) {
 		this.id = id;
 	}
 	
@@ -35,7 +40,7 @@ public class Product {
 	}
 	
 	// Getters
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
