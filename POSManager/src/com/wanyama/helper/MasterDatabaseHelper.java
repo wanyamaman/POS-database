@@ -9,6 +9,7 @@ import java.util.Locale;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.format.DateFormat;
@@ -72,9 +73,14 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// Create tables
-		db.execSQL(CREATE_TABLE_PRODUCTS);
-		db.execSQL(CREATE_TABLE_STALLS);
-		db.execSQL(CREATE_TABLE_PURCHASE);
+		try {
+			db.execSQL(CREATE_TABLE_PRODUCTS);
+			db.execSQL(CREATE_TABLE_STALLS);
+			db.execSQL(CREATE_TABLE_PURCHASE);
+		} catch (SQLException e) {
+			// make custom message class to toast error
+			e.printStackTrace();
+		}
 
 	}
 
@@ -82,9 +88,15 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// delete older tables before upgrading
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_STALLS);
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+		
+		try {
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_STALLS);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		
 		// create new tables
 		onCreate(db);
