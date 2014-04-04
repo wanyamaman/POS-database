@@ -24,7 +24,7 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	private static final String LOG = MasterDatabaseHelper.class.getName();
 	
 	// Database Version
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	
 	// Database Name
 	private static final String DATABASE_NAME = "posMasterManager";
@@ -35,16 +35,16 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	private static final String TABLE_PURCHASE = "purchases";
 	
 	//Shared Column Names
-	private static final String KEY_ID = "id";
+	private static final String KEY_ID = "_id";
 //	private static final String KEY_CREATED_AT = "created_at";
 	
 	// Stalls table column names
-	private static final String KEY_STALL_NUMBER = "stall_number";
-	private static final String KEY_STALL_BALANCE = "stall_balance";
+	private static final String KEY_STALL_NUMBER = "number";
+	private static final String KEY_STALL_BALANCE = "balance";
 	
 	// Products table column names
-	private static final String KEY_PRODUCT_CODE = "product_code";
-	private static final String KEY_PRODUCT_PRICE = "product_price";
+	private static final String KEY_PRODUCT_CODE = "code";
+	private static final String KEY_PRODUCT_PRICE = "price";
 	
 	// Purchase table column names
 	private static final String KEY_STALL_ID = "stall_id";
@@ -53,16 +53,16 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	
 	// SQL Create tables statement
 	// STALL table
-	private static final String CREATE_TABLE_STALLS = "CREATE TABLE "+ TABLE_STALLS+ "("+ KEY_ID+ " INTEGER PRIMARY KEY,"
-			+ KEY_STALL_NUMBER+ " INTEGER,"+ KEY_STALL_BALANCE+");";
+	private static final String CREATE_TABLE_STALLS = "CREATE TABLE "+ TABLE_STALLS+ "("+ KEY_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			+ KEY_STALL_NUMBER+ " INTEGER NOT NULL UNIQUE,"+ KEY_STALL_BALANCE+ "INTEGER NOT NULL" +");";
 	
 	// PRODUCTS table
-	private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "+ TABLE_PRODUCTS+ "("+ KEY_ID+ " INTEGER PRIMERY KEY,"
-			+ KEY_PRODUCT_CODE+ " INTEGER,"+ KEY_PRODUCT_PRICE+ " INTEGER"+ ");";
+	private static final String CREATE_TABLE_PRODUCTS = "CREATE TABLE "+ TABLE_PRODUCTS+ "("+ KEY_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			+ KEY_PRODUCT_CODE+ " INTEGER NOT NULL UNIQUE,"+ KEY_PRODUCT_PRICE+ " INTEGER NOT NULL"+ ");";
 	
 	// PURCHASE table
-	private static final String CREATE_TABLE_PURCHASE = "CREATE TABLE " + TABLE_PURCHASE+ "("+ KEY_ID+ " INTEGER PRIMARY KEY,"
-			+ KEY_STALL_ID+ " INTEGER,"+ KEY_PRODUCT_ID+ " INTEGER"+ ");";
+	private static final String CREATE_TABLE_PURCHASE = "CREATE TABLE " + TABLE_PURCHASE+ "("+ KEY_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			+ KEY_STALL_ID+ " INTEGER NOT NULL,"+ KEY_PRODUCT_ID+ " INTEGER NOT NULL"+ ");";
 	
 	// Constructor
 	public MasterDatabaseHelper(Context ctx){
@@ -75,8 +75,8 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 		// Create tables
 		try {
 			db.execSQL(CREATE_TABLE_PRODUCTS);
-			db.execSQL(CREATE_TABLE_STALLS);
-			db.execSQL(CREATE_TABLE_PURCHASE);
+//			db.execSQL(CREATE_TABLE_STALLS);
+//			db.execSQL(CREATE_TABLE_PURCHASE);
 		} catch (SQLException e) {
 			// make custom message class to toast error
 			e.printStackTrace();
@@ -94,12 +94,27 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_STALLS);
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		// create new tables
 		onCreate(db);
+	}
+	
+	//called to drop all tables and create a new database (same functionality as onUpgrade method)
+	public void clearDatabase(SQLiteDatabase db){
+		
+		try {
+			super.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
+			super.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + TABLE_STALLS);
+			super.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		onCreate(super.getWritableDatabase());
 	}
 	
 	/********************************************************
@@ -190,6 +205,7 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 		values.put(KEY_PRODUCT_PRICE, item.getPrice());
 		
 		long product_id = db.insert(TABLE_PRODUCTS, null, values);
+		item.setID(product_id);
 		
 		return product_id;
 		
@@ -275,5 +291,7 @@ public class MasterDatabaseHelper extends SQLiteOpenHelper {
 	// implement later: 
 	// deleting a product from the list of product removes product from purchase table
 	// deleting a stall, removes all purchases from that stall on the purchase table
+	// prevent the addition of duplicate products
+	// initiate primary key correctly
 
 }
