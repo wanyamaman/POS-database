@@ -51,5 +51,9 @@ public class Product {
 	public int getPrice() {
 		return price;
 	}
+	
+	public String toString(){
+		return ("ID: "+ id+ "  Code: "+code+ " "+"Price: R"+price);
+	}
 
 }
