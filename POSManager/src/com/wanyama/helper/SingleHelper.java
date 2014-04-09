@@ -91,7 +91,7 @@ public class SingleHelper extends SQLiteOpenHelper {
 			e.printStackTrace();
 			product_id = -99;
 		}
-	//	item.setID(product_id); // check if it gives primary key
+		item.setID(product_id); // check if it gives primary key
 
 		return product_id;
 
