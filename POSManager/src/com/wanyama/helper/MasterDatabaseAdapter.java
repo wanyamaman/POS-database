@@ -6,9 +6,11 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v4.database.DatabaseUtilsCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,12 +20,16 @@ import com.wanyama.model.Stall;
 // Adapter class controls access to database methods
 public class MasterDatabaseAdapter  {
 
-	MasterDatabaseHelper helper;
-	Context ctx;
+	private MasterDatabaseHelper helper;
+	private Context ctx;
+	SQLiteDatabase dbRead;
+	SQLiteDatabase dbWrite;
 	
 	public MasterDatabaseAdapter (Context context) {
 		helper = new MasterDatabaseHelper(context);
 		ctx =context;
+		dbRead = helper.getReadableDatabase();
+		dbWrite = helper.getWritableDatabase();
 	}
 	
 	
@@ -86,7 +92,7 @@ public class MasterDatabaseAdapter  {
 ////////////////////
 //	READ METHODS //
 ///////////////////	
-	// fetch a stall
+	// fetch a stall by its database ID
 	public Stall getStallById(long stall_id){
 		SQLiteDatabase db = helper.getReadableDatabase();
 		
@@ -106,6 +112,7 @@ public class MasterDatabaseAdapter  {
 		
 	}
 	
+	// fetch a stall by its stall number
 	public Stall getStallByNumber(int stall_number){
 		SQLiteDatabase db = helper.getReadableDatabase();
 		
@@ -145,6 +152,17 @@ public class MasterDatabaseAdapter  {
 			} while (c.moveToNext());
 		}
 		return stalls;
+	}
+	
+	// count the number of stalls
+	public long countStalls(){
+		
+		return DatabaseUtils.queryNumEntries(dbRead, MasterDatabaseHelper.TABLE_STALLS);
+	}
+	
+	//count the number of products
+	public long countProducts(){
+		return DatabaseUtils.queryNumEntries(dbRead, MasterDatabaseHelper.TABLE_PRODUCTS);
 	}
 	
 	// fetch a product based on its ID
