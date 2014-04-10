@@ -4,5 +4,15 @@
     <string name="app_name">POS Manager</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="addStallHeader">Add Stall</string>
+    <string name="productCodeHint">Enter the product code here.</string>
+    <string name="submitLabel">Submit</string>
+    <string name="stallsCountInfo">Stall(s) entered so far.</string>
+    <string name="stallDetailHeader">Stall Detail</string>
+    <string name="stallNumber">Stall Number:</string>
+    <string name="stallBalance">Current Balance: R</string>
+    <string name="editLabel">Edit</string>
+    <string name="deleteLabel">Delete</string>
+    <string name="resetLabel">Reset Stall Balance</string>
 
 </resources>
