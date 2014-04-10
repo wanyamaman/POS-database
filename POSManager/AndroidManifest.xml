@@ -24,6 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="configuration.InsertStall"></activity>
+        <activity android:name="EditTable"></activity>
+        <activity android:name="configuration.EditStall"></activity>
+        <activity android:name="configuration.InsertProduct"></activity>
+        <activity android:name="EditProduct"></activity>
     </application>
 
 </manifest>
