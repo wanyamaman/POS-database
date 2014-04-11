@@ -4,75 +4,77 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Large Text"
+        android:text="@string/addProductTitle"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/header"
         android:layout_centerHorizontal="true"
-        android:text="Button" />
+        android:text="@string/mainMenuReturn" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/menu"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:ems="10"
-        android:inputType="number" >
+        android:inputType="number" 
+        android:hint="@string/productCodeHint">
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignLeft="@+id/code"
         android:layout_centerVertical="true"
         android:ems="10"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/editText2"
-        android:text="Button" />
+        android:inputType="number" 
+        android:hint="@string/priceHint"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/countTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
+        android:layout_above="@+id/reset"
         android:layout_centerHorizontal="true"
-        android:text="TextView" />
+        android:text="@string/productCountInfo" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <Button
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:text="TextView" />
+        android:layout_below="@+id/price"
+        android:layout_centerHorizontal="true"
+        android:text="@string/submitLabel" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/countTitle"
+        android:layout_centerHorizontal="true"
+        android:text="@string/count" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/clearTable" />
 
 </RelativeLayout>

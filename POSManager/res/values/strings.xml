@@ -2,10 +2,9 @@
 <resources>
 
     <string name="app_name">POS Manager</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="addStallHeader">Add a Stall</string>
-    <string name="productCodeHint">Enter the product code here.</string>
+    <string name="productCodeHint">Enter product code</string>
     <string name="submitLabel">Submit</string>
     <string name="stallCountInfo">Stall(s) entered so far.</string>
     <string name="stallDetailHeader">Stall Detail</string>
@@ -14,18 +13,21 @@
     <string name="editLabel">Edit</string>
     <string name="deleteLabel">Delete</string>
     <string name="resetLabel">Reset Stall Balance</string>
-    <string name="stallNumberHint">Enter the stall number.</string>
-    <string name="stallCount">0</string>
+    <string name="stallNumberHint">Enter stall number</string>
+    <string name="count">0</string>
     <string name="defaultNumber">0000</string>
     <string name="mainMenuReturn">Back to Main Menu</string>
-    <string name="addStall">Add a Stall</string>
+    <string name="addStall">Add Stalls</string>
     <string name="viewStall">Edit Stall Detail</string>
-    <string name="addProduct">Add A New Product</string>
+    <string name="addProductTitle">Add A New Product</string>
     <string name="viewProduct">Edit Product Detail</string>
     <string name="Stall">STALLS</string>
     <string name="products">PRODUCTS</string>
     <string name="masterMenuHeader">Master Menu</string>
     <string name="clearProducts">remove all products</string>
-    <string name="clearStalls">remove all stalls</string>
+    <string name="clearTable">remove all entries</string>
+    <string name="priceHint">Enter product price</string>
+    <string name="addProduct">Add  Products</string>
+    <string name="productCountInfo">Product(s) entered so far.</string>
 
 </resources>

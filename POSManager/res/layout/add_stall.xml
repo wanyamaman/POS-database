@@ -43,7 +43,7 @@
         android:layout_below="@+id/submitButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="85dp"
-        android:text="@string/stallCount" />
+        android:text="@string/count" />
 
     <TextView
         android:id="@+id/countTitle"
@@ -68,6 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/countTitle"
         android:layout_centerHorizontal="true"
-        android:text="@string/clearStalls" />
+        android:text="@string/clearTable" />
 
 </RelativeLayout>
