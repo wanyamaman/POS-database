@@ -5,7 +5,7 @@
     >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -13,10 +13,10 @@
         android:text="@string/submitLabel" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/numberInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/submitButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:ems="10"
@@ -40,7 +40,7 @@
         android:id="@+id/count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/submitButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="85dp"
         android:text="@string/stallCount" />
@@ -52,5 +52,22 @@
         android:layout_below="@+id/count"
         android:layout_centerHorizontal="true"
         android:text="@string/stallCountInfo" />
+
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:text="@string/mainMenuReturn" />
+
+    <Button
+        android:id="@+id/reset"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countTitle"
+        android:layout_centerHorizontal="true"
+        android:text="@string/clearStalls" />
 
 </RelativeLayout>

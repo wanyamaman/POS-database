@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
 
 	MasterDatabaseAdapter db;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class MainActivity extends Activity {
 		db = new MasterDatabaseAdapter(getApplicationContext());
 		
 		db.dropDatabase();
+		
 
 		
 		//creating products

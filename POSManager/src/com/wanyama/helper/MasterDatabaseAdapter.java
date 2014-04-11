@@ -54,7 +54,7 @@ public class MasterDatabaseAdapter  {
 			stall_id = db.insertOrThrow(MasterDatabaseHelper.TABLE_STALLS, null, values);
 		} catch (SQLException e) {
 			// alert user of failure
-			Toast.makeText(ctx, "failed to insert stall number: "+ stall.getNumber(), Toast.LENGTH_LONG).show();
+			Toast.makeText(ctx, "failed to insert stall number: "+ stall.getNumber()+".\nPlease ensure that number is not already in use.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 			stall_id = -1;	// negative value indicates error to calling method
 		}
@@ -272,6 +272,37 @@ public class MasterDatabaseAdapter  {
 	public void deleteProduct(long product_id){
 		SQLiteDatabase db = helper.getWritableDatabase();
 		db.delete(MasterDatabaseHelper.TABLE_PRODUCTS, MasterDatabaseHelper.KEY_ID + " = ?", new String[] {String.valueOf(product_id)});
+	}
+	
+	// delete all Stall records
+	public void deleteAllStalls(){
+		try {
+			dbWrite.delete(MasterDatabaseHelper.TABLE_STALLS, null, null);
+		} catch (Exception e) {
+			Toast.makeText(ctx, "Failed to delete all stalls", Toast.LENGTH_LONG)
+			.show();
+			e.printStackTrace();
+		}
+	}
+	// delete all Product records
+	public void deleteAllProducts(){
+		try {
+			dbWrite.delete(MasterDatabaseHelper.TABLE_PRODUCTS, null, null);
+		} catch (Exception e) {
+			Toast.makeText(ctx, "Failed to delete all products", Toast.LENGTH_LONG)
+			.show();
+			e.printStackTrace();
+		}
+	}
+	// delete all Purchase records
+	public void deleteAllPurchases(){
+		try {
+			dbWrite.delete(MasterDatabaseHelper.TABLE_PURCHASE, null, null);
+		} catch (Exception e) {
+			Toast.makeText(ctx, "Failed to delete all purchases", Toast.LENGTH_LONG)
+			.show();
+			e.printStackTrace();
+		}
 	}
 	
 	// DELETE DATABASE TABLES

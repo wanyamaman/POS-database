@@ -1,4 +1,4 @@
-package configuration;
+package com.wanyama.configuration;
 
 import android.app.Activity;
 import android.os.Bundle;
