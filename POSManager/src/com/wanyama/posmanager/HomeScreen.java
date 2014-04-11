@@ -22,7 +22,7 @@ public class HomeScreen extends Activity {
 		setContentView(R.layout.mode);
 		ctx = this;
 
-		TextView header = (TextView) findViewById(R.id.header);
+//		TextView header = (TextView) findViewById(R.id.header);
 		Button master = (Button) findViewById(R.id.master);
 		Button slave = (Button) findViewById(R.id.slave);
 
