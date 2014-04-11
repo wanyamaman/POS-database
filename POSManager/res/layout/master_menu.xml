@@ -29,13 +29,13 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
-            android:id="@+id/addStall"
+            android:id="@+id/addStallBtn"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:text="@string/addStall" />
 
         <Button
-            android:id="@+id/editStall"
+            android:id="@+id/editStallBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/viewStall" />
@@ -48,13 +48,13 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
-            android:id="@+id/addProduct"
+            android:id="@+id/addProductBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/addProduct" />
 
         <Button
-            android:id="@+id/editProduct"
+            android:id="@+id/editProductBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/viewProduct" />
