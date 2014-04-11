@@ -32,7 +32,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchAddStallActivity = new Intent(ctx, InsertStall.class);
+				Intent launchAddStallActivity = new Intent(MasterMain.this, InsertStall.class);
 				startActivity(launchAddStallActivity);
 				
 			}
@@ -42,7 +42,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchEditStall = new Intent(ctx, EditStall.class);
+				Intent launchEditStall = new Intent(MasterMain.this, EditStall.class);
 				startActivity(launchEditStall);
 				
 			}
@@ -52,7 +52,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchAddProduct= new Intent(ctx, InsertProduct.class);
+				Intent launchAddProduct= new Intent(MasterMain.this, InsertProduct.class);
 				startActivity(launchAddProduct);
 				
 			}
@@ -62,7 +62,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchEditProduct = new Intent(ctx, EditProduct.class);
+				Intent launchEditProduct = new Intent(MasterMain.this, EditProduct.class);
 				startActivity(launchEditProduct);
 				
 			}
