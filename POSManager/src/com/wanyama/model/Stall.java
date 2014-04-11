@@ -7,19 +7,25 @@ package com.wanyama.model;
  */
 public class Stall {
 	
-	int id;
+	long id;
 	int stall_number;
 	int balance;
 	
-	// constructor
-	public Stall(int id, int number, int balance) {
+	//constructor
+	
+	public Stall(int number, int balance){
+		stall_number = number;
+		this.balance = balance;
+	}
+	// constructor (SHOULD NOT BE USED, rather set id after table insertion)
+	public Stall(long id, int number, int balance) {
 		this.id = id;
 		stall_number = number;
 		this.balance = balance;
 	}
 	
 	// Setters
-	public void setId(int id){
+	public void setId(long id){
 		this.id = id;
 	}
 	public void setNumber(int number){
@@ -28,9 +34,15 @@ public class Stall {
 	public void setBalance(int amount){
 		balance = amount;
 	}
+	public void addPurchaseToBalance(int price){
+		balance += price;
+	}
+	public void resetBalance(){
+		balance = 0;
+	}
 	
 	// Getters
-	public int getId(){
+	public long getId(){
 		return id;
 	}
 	public int getNumber(){
@@ -38,5 +50,9 @@ public class Stall {
 	}
 	public int getBalance(){
 		return balance;
+	}
+	
+	public String toString(){
+		return ("ID: "+ id+ "  Stall Number: "+stall_number+ " "+"Balance: R"+balance);
 	}
 }
