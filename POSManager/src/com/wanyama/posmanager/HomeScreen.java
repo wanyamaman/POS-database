@@ -1,7 +1,10 @@
 package com.wanyama.posmanager;
 
+import com.wanyama.configuration.MasterMain;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +19,6 @@ public class HomeScreen extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mode);
 		ctx = this;
 
@@ -29,6 +31,8 @@ public class HomeScreen extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(ctx, "Master Mode Selected", Toast.LENGTH_LONG)
 						.show();
+				Intent launchMasterMain = new Intent(HomeScreen.this, MasterMain.class);
+				startActivity(launchMasterMain);
 			}
 		});
 

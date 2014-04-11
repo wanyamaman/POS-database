@@ -1,4 +1,4 @@
-package configuration;
+package com.wanyama.configuration;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,10 +12,10 @@ import com.wanyama.posmanager.R;
 public class MasterMain extends Activity {
 
 	private Context ctx;
-	Button addStall;
-	Button editStall;
-	Button addProduct;
-	Button editProduct;
+	private Button addStall;
+	private Button editStall;
+	private Button addProduct;
+	private Button editProduct;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MasterMain extends Activity {
 	    addProduct = (Button) findViewById(R.id.addProductBtn);
 	    editProduct = (Button) findViewById(R.id.editProductBtn);
 	    
+	    // navigate to the add a stall properties screen
 	    addStall.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -38,6 +39,7 @@ public class MasterMain extends Activity {
 			}
 		});
 	    
+	    // navigate to the edit stall properties screen
 	    editStall.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -48,6 +50,7 @@ public class MasterMain extends Activity {
 			}
 		});
 	    
+	    // navigate to the add a product screen
 	    addProduct.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -58,6 +61,7 @@ public class MasterMain extends Activity {
 			}
 		});
 	
+	    // navigate to the edit product screen
 	    editProduct.setOnClickListener( new View.OnClickListener() {
 			
 			@Override

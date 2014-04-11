@@ -17,7 +17,7 @@
     <string name="stallNumberHint">Enter the stall number.</string>
     <string name="stallCount">0</string>
     <string name="defaultNumber">0000</string>
-    <string name="menuReturn">Menu</string>
+    <string name="mainMenuReturn">Back to Main Menu</string>
     <string name="addStall">Add a Stall</string>
     <string name="viewStall">Edit Stall Detail</string>
     <string name="addProduct">Add A New Product</string>
@@ -25,5 +25,7 @@
     <string name="Stall">STALLS</string>
     <string name="products">PRODUCTS</string>
     <string name="masterMenuHeader">Master Menu</string>
+    <string name="clearProducts">remove all products</string>
+    <string name="clearStalls">remove all stalls</string>
 
 </resources>
