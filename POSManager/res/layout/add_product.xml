@@ -22,20 +22,6 @@
         android:text="@string/mainMenuReturn" />
 
     <EditText
-        android:id="@+id/code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/menu"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:ems="10"
-        android:inputType="number" 
-        android:hint="@string/productCodeHint">
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,5 +62,16 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/clearTable" />
+
+    <EditText
+        android:id="@+id/code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/price"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:hint="@string/productCodeHint"
+        android:inputType="number" />
 
 </RelativeLayout>

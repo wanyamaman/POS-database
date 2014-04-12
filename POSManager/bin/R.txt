@@ -247,7 +247,7 @@ int id balance 0x7f050052
 int id balanceLabel 0x7f050051
 int id beginning 0x7f050011
 int id checkbox 0x7f05002d
-int id code 0x7f05003f
+int id code 0x7f050040
 int id collapseActionView 0x7f05000d
 int id container 0x7f05003c
 int id count 0x7f050044
@@ -281,7 +281,7 @@ int id normal 0x7f050000
 int id number 0x7f050053
 int id numberInput 0x7f050046
 int id numberLabel 0x7f05004f
-int id price 0x7f050040
+int id price 0x7f05003f
 int id productsHeader 0x7f05004a
 int id progress_circular 0x7f050018
 int id progress_horizontal 0x7f050019

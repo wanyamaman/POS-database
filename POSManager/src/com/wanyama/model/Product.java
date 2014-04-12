@@ -12,14 +12,11 @@ public class Product {
 	int price;		// price of product
 	
 	// Constructors
-//	public Product (){
-//	}
-	
 	public Product(int code, int price) {
 		this.code = code;
 		this.price = price;
 	}
-	
+	// should not be used (rather set id setter method when inserted into database)
 	public Product(long id, int code, int price) {
 		this.id =id;
 		this.code = code;

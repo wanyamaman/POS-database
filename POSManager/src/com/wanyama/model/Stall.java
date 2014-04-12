@@ -12,7 +12,6 @@ public class Stall {
 	int balance;
 	
 	//constructor
-	
 	public Stall(int number, int balance){
 		stall_number = number;
 		this.balance = balance;
