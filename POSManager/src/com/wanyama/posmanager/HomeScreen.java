@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class HomeScreen extends Activity {
 
-	Context ctx;
+	private Context ctx;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -41,6 +41,8 @@ public class HomeScreen extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(ctx, "Slave Mode Selected", Toast.LENGTH_LONG)
 						.show();
+				Intent launchOrderMenu = new Intent(HomeScreen.this, MakeOrders.class);
+				startActivity(launchOrderMenu);
 			}
 		});
 	}
