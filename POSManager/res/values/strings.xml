@@ -29,6 +29,7 @@
     <string name="priceHint">Enter product price</string>
     <string name="addProduct">Add  Products</string>
     <string name="productCountInfo">Product(s) entered so far.</string>
+    <string name="returnHome">Return to Home Screen</string>
 
 
 </resources>
