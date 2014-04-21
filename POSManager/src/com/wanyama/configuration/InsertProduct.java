@@ -36,6 +36,7 @@ public class InsertProduct extends Activity {
 		// Initialize variables
 		ctx = this;
 		dbAdapter = new MasterDatabaseAdapter(ctx);
+		
 
 		// assign layout objects to views
 		code = (TextView) findViewById(R.id.code);
@@ -44,7 +45,10 @@ public class InsertProduct extends Activity {
 		submit = (Button) findViewById(R.id.submit);
 		menuReturn = (Button) findViewById(R.id.menu);
 		reset = (Button) findViewById(R.id.reset);
-
+			
+		// read number of fields from database
+		updateCount();
+		
 		// adds a product into the database
 		submit.setOnClickListener(new OnClickListener() {
 
