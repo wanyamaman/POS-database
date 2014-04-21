@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.wanyama.posmanager.HomeScreen;
 import com.wanyama.posmanager.R;
 
 public class MasterMain extends Activity {
@@ -16,6 +18,7 @@ public class MasterMain extends Activity {
 	private Button editStall;
 	private Button addProduct;
 	private Button editProduct;
+	private Button homeScreen;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class MasterMain extends Activity {
 	    editStall = (Button) findViewById(R.id.editStallBtn);
 	    addProduct = (Button) findViewById(R.id.addProductBtn);
 	    editProduct = (Button) findViewById(R.id.editProductBtn);
+	    homeScreen = (Button) findViewById(R.id.menuReturn);
 	    
 	    // navigate to the add a stall properties screen
 	    addStall.setOnClickListener( new View.OnClickListener() {
@@ -68,6 +72,17 @@ public class MasterMain extends Activity {
 			public void onClick(View v) {
 				Intent launchEditProduct = new Intent(MasterMain.this, EditProduct.class);
 				startActivity(launchEditProduct);
+				
+			}
+		});
+	    
+	    // navigate back to the homescreen
+	    homeScreen.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent launchHomeScreen = new Intent(MasterMain.this, HomeScreen.class);
+				startActivity(launchHomeScreen);
 				
 			}
 		});
