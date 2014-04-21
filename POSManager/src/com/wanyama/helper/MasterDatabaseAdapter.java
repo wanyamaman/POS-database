@@ -31,6 +31,11 @@ public class MasterDatabaseAdapter {
 		dbRead = helper.getReadableDatabase();
 		dbWrite = helper.getWritableDatabase();
 	}
+	
+	// access to readable version of database
+	public SQLiteDatabase getReadable(){
+		return dbRead;
+	}
 
 	/********************************************************
 	 * CRUD (Create, Read, Update, Delete) Method definitions
@@ -265,7 +270,30 @@ public class MasterDatabaseAdapter {
 
 		return items;
 	}
-
+	
+	// returns a cursor of table entries
+	public Cursor getPurchaseCursor(){
+		
+		String selectQuery = " SELECT * FROM " + MasterDatabaseHelper.TABLE_PURCHASE;
+		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		
+		Cursor c = dbRead.rawQuery(selectQuery, null);
+		
+		return c;
+		
+	}
+	
+	// returns a cursor of product entries
+	public Cursor getProductsCursor(){
+		
+		String selectQuery = " SELECT * FROM " + MasterDatabaseHelper.TABLE_PRODUCTS;
+		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		
+		Cursor c = dbRead.rawQuery(selectQuery, null);
+		
+		return c;
+		
+	}
 	// ///////////////////////
 	// END OF READ METHODS //
 	// ///////////////////////
@@ -434,8 +462,6 @@ public class MasterDatabaseAdapter {
 	// table
 	// deleting a stall, removes all purchases from that stall on the purchase
 	// table
-	// prevent the addition of duplicate products
-	// initiate primary key correctly
 
 	static class MasterDatabaseHelper extends SQLiteOpenHelper {
 		// Logcat tag
