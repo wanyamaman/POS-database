@@ -107,7 +107,7 @@ public class MakeOrders extends Activity {
 	                String arrStr[] ={c.getString(0),c.getString(1), c.getString(2)};
 	                csvWrite.writeNext(arrStr);
 	            }
-	            // close streama and objects
+	            // close stream and objects
 	            csvWrite.close();
 	            c.close();
 	            // raise success notification flag

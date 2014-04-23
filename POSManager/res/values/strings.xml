@@ -30,6 +30,18 @@
     <string name="addProduct">Add  Products</string>
     <string name="productCountInfo">Product(s) entered so far.</string>
     <string name="returnHome">Return to Home Screen</string>
+    <string name="slaveMenuHeader">Slave Device Setup</string>
+    <string name="productMenu">Product Menu</string>
+    <string name="Menu">Menu</string>
+    <string name="basket">View Basket</string>
+    <string name="slaveSetupBtn">Return to Setup Screen</string>
+    <string name="product_code">CODE:</string>
+    <string name="product_price">PRICE:</string>
+    <string name="orderItemHeader">Order Item</string>
+    <string name="quantity">QUANTITY:</string>
+    <string name="checkout">Purchase Products</string>
+    <string name="addBtn">add</string>
+    <string name="deleteBtn">delete</string>
 
 
 </resources>
