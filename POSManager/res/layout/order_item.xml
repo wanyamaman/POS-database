@@ -70,20 +70,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        android:id="@+id/deleteBtn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/addBtn"
-        android:layout_alignBottom="@+id/addBtn"
-        android:layout_alignLeft="@+id/quantity"
-        android:text="@string/deleteBtn" />
-
-    <Button
         android:id="@+id/menuReturnBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addBtn"
+        android:layout_below="@+id/linear"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
         android:text="@string/productMenu" />
@@ -97,21 +87,38 @@
         android:text="@string/checkout" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/setupReturnBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkoutBtn"
         android:layout_below="@+id/checkoutBtn"
         android:text="@string/slaveSetupBtn" />
 
-    <Button
-        android:id="@+id/addBtn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/quantityLabel"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/quantityLabel"
-        android:layout_marginTop="20dp"
-        android:text="@string/addBtn" />
+        android:layout_marginTop="26dp"
+        android:gravity="center"
+        android:weightSum="5" >
+
+        <Button
+            android:id="@+id/addBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="@string/addBtn" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="@string/deleteBtn" />
+    </LinearLayout>
 
 </RelativeLayout>
