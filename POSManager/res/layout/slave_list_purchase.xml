@@ -16,6 +16,7 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/menu"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
     </ListView>
@@ -33,14 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/basketBtn"
-        android:layout_centerHorizontal="true"
-        android:text="@string/slaveSetupBtn" />
-    
-    <Button
-        android:id="@+id/checkoutBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/setupBtn"
         android:layout_centerHorizontal="true"
         android:text="@string/slaveSetupBtn" />
 

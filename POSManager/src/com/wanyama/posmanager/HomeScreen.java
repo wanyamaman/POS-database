@@ -15,6 +15,8 @@ import android.widget.Toast;
 public class HomeScreen extends Activity {
 
 	private Context ctx;
+	private Button master;
+	private Button slave;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -24,8 +26,8 @@ public class HomeScreen extends Activity {
 		ctx = this;
 
 //		TextView header = (TextView) findViewById(R.id.header);
-		Button master = (Button) findViewById(R.id.master);
-		Button slave = (Button) findViewById(R.id.slave);
+		master = (Button) findViewById(R.id.master);
+		slave = (Button) findViewById(R.id.slave);
 
 		master.setOnClickListener(new View.OnClickListener() {
 			@Override

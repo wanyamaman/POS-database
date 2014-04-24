@@ -26,7 +26,7 @@ public class EditProduct extends Activity implements AdapterView.OnItemClickList
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.list_products);
+	    setContentView(R.layout.master_list_products);
 	
 	    list = (ListView) findViewById(R.id.list_view);
 	    ctx = this;

@@ -24,7 +24,7 @@ public class EditStall extends Activity implements AdapterView.OnItemClickListen
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.list_stalls);
+	    setContentView(R.layout.master_list_stalls);
 	    
 	    list = (ListView) findViewById(R.id.listV);
 	    ctx = this;
