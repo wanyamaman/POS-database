@@ -19,35 +19,56 @@
         android:layout_below="@+id/slave_menu_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
-        android:ems="10" 
-        android:hint="@string/stallNumberHint">
+        android:ems="10"
+        android:hint="@string/stallNumberHint"
+        android:inputType="number" >
 
         <requestFocus />
     </EditText>
 
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/stall_id"
         android:layout_centerHorizontal="true"
-        android:text="@string/submitLabel" />
+        android:text="@string/updateBtn" />
 
     <Button
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/submitButton"
+        android:layout_below="@+id/updateButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:text="@string/productMenu" />
 
     <Button
-        android:id="@+id/menuReturn"
+        android:id="@+id/homeReturn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/menu"
         android:layout_centerHorizontal="true"
         android:text="@string/returnHome" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/numberLabel"
+        android:layout_alignBottom="@+id/numberLabel"
+        android:layout_alignRight="@+id/slave_menu_header"
+        android:text="@string/defaultNumber"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/numberLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/slave_menu_header"
+        android:layout_below="@+id/slave_menu_header"
+        android:layout_marginTop="26dp"
+        android:text="@string/currentStallNum"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

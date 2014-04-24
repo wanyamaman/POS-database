@@ -42,6 +42,8 @@
     <string name="checkout">Purchase Products</string>
     <string name="addBtn">add</string>
     <string name="deleteBtn">delete</string>
+    <string name="currentStallNum">Current Number:</string>
+    <string name="updateBtn">Update</string>
 
 
 </resources>

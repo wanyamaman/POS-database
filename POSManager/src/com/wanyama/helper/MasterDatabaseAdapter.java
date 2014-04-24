@@ -194,6 +194,11 @@ public class MasterDatabaseAdapter {
 		return DatabaseUtils.queryNumEntries(dbRead,
 				MasterDatabaseHelper.TABLE_PRODUCTS);
 	}
+	
+	// count the number of purchase
+	public long countPurchases(){
+		return DatabaseUtils.queryNumEntries(dbRead, MasterDatabaseHelper.TABLE_PURCHASE);
+	}
 
 	// fetch a product based on its ID
 	public Product getProductById(long product_id) {
