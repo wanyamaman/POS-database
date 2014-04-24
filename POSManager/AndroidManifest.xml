@@ -37,6 +37,8 @@
         <activity android:name="com.wanyama.network.WifiManager"></activity>
         <activity android:name="MakeOrders"></activity>
         <activity android:name="com.wanyama.configuration.SlaveMain"></activity>
+        <activity android:name="ProductMenu"></activity>
+        <activity android:name="OrderItem"></activity>
     </application>
 
 </manifest>
