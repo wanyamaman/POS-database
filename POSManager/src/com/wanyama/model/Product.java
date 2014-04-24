@@ -49,8 +49,15 @@ public class Product {
 		return price;
 	}
 	
+	@Override
 	public String toString(){
-		return ("ID: "+ id+ "  Code: "+code+ " "+"Price: R"+price);
+		StringBuilder result = new StringBuilder();
+		String newLine = System.getProperty("line.separator");
+		
+		result.append("Code: "+code+newLine);
+		result.append("Price: R"+price);
+	
+		return result.toString();
 	}
 
 }
