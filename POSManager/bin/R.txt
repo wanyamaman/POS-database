@@ -239,14 +239,14 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050069
+int id action_settings 0x7f05006b
 int id activity_chooser_view_content 0x7f050025
 int id addBtn 0x7f05005f
 int id addProductBtn 0x7f050056
 int id addStallBtn 0x7f050053
 int id always 0x7f05000b
-int id balance 0x7f050066
-int id balanceLabel 0x7f050065
+int id balance 0x7f050069
+int id balanceLabel 0x7f050068
 int id basketBtn 0x7f05004a
 int id beginning 0x7f050011
 int id checkbox 0x7f05002d
@@ -258,12 +258,12 @@ int id container 0x7f05003c
 int id count 0x7f050044
 int id countTitle 0x7f050041
 int id default_activity_button 0x7f050028
-int id delete 0x7f050068
+int id delete 0x7f05006a
 int id deleteBtn 0x7f050060
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
-int id edit 0x7f050064
+int id edit 0x7f050067
 int id editProductBtn 0x7f050057
 int id editStallBtn 0x7f050054
 int id edit_query 0x7f050030
@@ -273,6 +273,7 @@ int id expanded_menu 0x7f05002c
 int id header 0x7f05003d
 int id home 0x7f050014
 int id homeAsUp 0x7f050005
+int id homeReturn 0x7f050064
 int id icon 0x7f05002a
 int id ifRoom 0x7f05000a
 int id image 0x7f050027
@@ -290,9 +291,9 @@ int id middle 0x7f050012
 int id never 0x7f050009
 int id none 0x7f050010
 int id normal 0x7f050000
-int id number 0x7f050067
+int id number 0x7f050065
 int id numberInput 0x7f050046
-int id numberLabel 0x7f050063
+int id numberLabel 0x7f050066
 int id price 0x7f05003f
 int id priceLabel 0x7f050058
 int id productsHeader 0x7f050055
@@ -331,6 +332,7 @@ int id tabMode 0x7f050002
 int id title 0x7f05002b
 int id top_action_bar 0x7f050020
 int id up 0x7f050021
+int id updateButton 0x7f050063
 int id useLogo 0x7f050003
 int id withText 0x7f05000c
 int integer abc_max_action_buttons 0x7f090000
@@ -399,6 +401,7 @@ int string checkout 0x7f0a0033
 int string clearProducts 0x7f0a0024
 int string clearTable 0x7f0a0025
 int string count 0x7f0a001a
+int string currentStallNum 0x7f0a0036
 int string defaultNumber 0x7f0a001b
 int string deleteBtn 0x7f0a0035
 int string deleteLabel 0x7f0a0017
@@ -424,6 +427,7 @@ int string stallDetailHeader 0x7f0a0013
 int string stallNumber 0x7f0a0014
 int string stallNumberHint 0x7f0a0019
 int string submitLabel 0x7f0a0011
+int string updateBtn 0x7f0a0037
 int string viewProduct 0x7f0a0020
 int string viewStall 0x7f0a001e
 int style AppBaseTheme 0x7f0b0083
