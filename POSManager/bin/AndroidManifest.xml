@@ -39,6 +39,7 @@
         <activity android:name="com.wanyama.configuration.SlaveMain"></activity>
         <activity android:name="ProductMenu"></activity>
         <activity android:name="OrderItem"></activity>
+        <activity android:name="Checkout"></activity>
     </application>
 
 </manifest>
