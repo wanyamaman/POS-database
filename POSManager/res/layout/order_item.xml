@@ -43,7 +43,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/codeLabel"
@@ -52,11 +52,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/code"
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/priceLabel"
-        android:layout_alignLeft="@+id/price"
+        android:layout_alignLeft="@+id/code"
         android:text="@string/defaultNumber"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
