@@ -34,6 +34,8 @@ public class EditStall extends Activity implements AdapterView.OnItemClickListen
 	    ArrayAdapter<Stall> adapter = new ArrayAdapter<Stall>(ctx ,android.R.layout.simple_list_item_1, listArray);
 	    list.setAdapter(adapter);
 	    list.setOnItemClickListener(this);
+	    
+	    db.closeDB();
 	   
 	}
 	@Override

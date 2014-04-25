@@ -457,9 +457,12 @@ public class MasterDatabaseAdapter {
 
 	// close database
 	public void closeDB() {
-		SQLiteDatabase db = helper.getReadableDatabase();
-		if (db != null && db.isOpen())
-			db.close();
+		
+		if (dbRead != null && dbRead.isOpen())
+			dbRead.close();
+		
+		if (dbWrite != null && dbWrite.isOpen())
+			dbWrite.close();
 	}
 
 	// implement later:

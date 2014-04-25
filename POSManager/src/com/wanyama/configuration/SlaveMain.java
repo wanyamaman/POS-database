@@ -50,6 +50,7 @@ public class SlaveMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				dbAdapter.closeDB();
 				Intent launchHomeScreen = new Intent(SlaveMain.this,
 						HomeScreen.class);
 				startActivity(launchHomeScreen);
@@ -62,6 +63,7 @@ public class SlaveMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				dbAdapter.closeDB();
 				Intent launchProductMenu = new Intent(SlaveMain.this,
 						ProductMenu.class);
 				startActivity(launchProductMenu);

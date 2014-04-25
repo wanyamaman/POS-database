@@ -56,6 +56,7 @@ public class ProductMenu extends Activity implements OnItemClickListener   {
 			
 			@Override
 			public void onClick(View v) {
+				db.closeDB();
 				Intent launchSlaveSetup = new Intent(ProductMenu.this,
 						Checkout.class);
 				startActivity(launchSlaveSetup);
@@ -67,6 +68,7 @@ public class ProductMenu extends Activity implements OnItemClickListener   {
 			
 			@Override
 			public void onClick(View v) {
+				db.closeDB();
 				Intent launchSlaveSetup = new Intent(ProductMenu.this,
 						SlaveMain.class);
 				startActivity(launchSlaveSetup);
@@ -90,6 +92,10 @@ public class ProductMenu extends Activity implements OnItemClickListener   {
 		// iterate through list view text
 		tokens.nextToken(); // skip code label
 		code = tokens.nextToken(); // product code value
+		
+		// close database before navigating 
+		db.closeDB();
+		
 		Intent launchOrderItem = new Intent(ProductMenu.this,
 				OrderItem.class);
 		launchOrderItem.putExtra("code", code);	// pass code to another activity

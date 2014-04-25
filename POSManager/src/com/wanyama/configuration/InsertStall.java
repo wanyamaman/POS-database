@@ -72,6 +72,7 @@ public class InsertStall extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				dbAdapter.closeDB();
 				Intent launchMasterMain = new Intent(InsertStall.this,
 						MasterMain.class);
 				startActivity(launchMasterMain);

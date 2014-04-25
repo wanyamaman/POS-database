@@ -81,6 +81,7 @@ public class InsertProduct extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				dbAdapter.closeDB();
 				Intent launchMasterMain = new Intent(InsertProduct.this,
 						MasterMain.class);
 				startActivity(launchMasterMain);
