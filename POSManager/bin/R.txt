@@ -251,6 +251,7 @@ int id basketBtn 0x7f05005f
 int id beginning 0x7f050011
 int id checkbox 0x7f05002d
 int id checkoutBtn 0x7f05005b
+int id clearBtn 0x7f05005e
 int id code 0x7f050040
 int id codeLabel 0x7f050056
 int id collapseActionView 0x7f05000d
@@ -259,7 +260,6 @@ int id count 0x7f050044
 int id countTitle 0x7f050041
 int id default_activity_button 0x7f050028
 int id delete 0x7f05006a
-int id deleteBtn 0x7f05005e
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
@@ -398,12 +398,12 @@ int string addStallHeader 0x7f0a000f
 int string app_name 0x7f0a000d
 int string basket 0x7f0a002d
 int string checkout 0x7f0a0033
+int string clearBtn 0x7f0a0035
 int string clearProducts 0x7f0a0024
 int string clearTable 0x7f0a0025
 int string count 0x7f0a001a
 int string currentStallNum 0x7f0a0036
 int string defaultNumber 0x7f0a001b
-int string deleteBtn 0x7f0a0035
 int string deleteLabel 0x7f0a0017
 int string editLabel 0x7f0a0016
 int string mainMenuReturn 0x7f0a001c
