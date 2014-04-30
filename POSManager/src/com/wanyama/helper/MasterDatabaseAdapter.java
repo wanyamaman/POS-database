@@ -2,7 +2,6 @@ package com.wanyama.helper;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,10 +9,8 @@ import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.database.DatabaseUtilsCompat;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.wanyama.model.Product;
 import com.wanyama.model.Stall;
 
@@ -31,9 +28,9 @@ public class MasterDatabaseAdapter {
 		dbRead = helper.getReadableDatabase();
 		dbWrite = helper.getWritableDatabase();
 	}
-	
+
 	// access to readable version of database
-	public SQLiteDatabase getReadable(){
+	public SQLiteDatabase getReadable() {
 		return dbRead;
 	}
 
@@ -83,8 +80,8 @@ public class MasterDatabaseAdapter {
 
 		long product_id;
 		try {
-			product_id = dbWrite.insertOrThrow(MasterDatabaseHelper.TABLE_PRODUCTS,
-					null, values);
+			product_id = dbWrite.insertOrThrow(
+					MasterDatabaseHelper.TABLE_PRODUCTS, null, values);
 		} catch (SQLException e) {
 			// alert user of failure
 			Toast.makeText(ctx,
@@ -194,10 +191,57 @@ public class MasterDatabaseAdapter {
 		return DatabaseUtils.queryNumEntries(dbRead,
 				MasterDatabaseHelper.TABLE_PRODUCTS);
 	}
-	
+
 	// count the number of purchase
-	public long countPurchases(){
-		return DatabaseUtils.queryNumEntries(dbRead, MasterDatabaseHelper.TABLE_PURCHASE);
+	public long countPurchases() {
+		return DatabaseUtils.queryNumEntries(dbRead,
+				MasterDatabaseHelper.TABLE_PURCHASE);
+	}
+
+	/*
+	 * public long countItemOrders(String code){
+	 * 
+	 * String selectQuery = "SELECT COUNT(*) FROM " +
+	 * MasterDatabaseHelper.TABLE_PURCHASE+ " WHERE " +
+	 * MasterDatabaseHelper.KEY_PURCHASE_CODE+ " = " + code;
+	 * 
+	 * Log.e(MasterDatabaseHelper.LOG, selectQuery);
+	 * 
+	 * Cursor c = dbRead.rawQuery(selectQuery, null);
+	 * 
+	 * return DatabaseUtils.queryNumEntries(dbRead,
+	 * MasterDatabaseHelper.TABLE_PURCHASE, code);
+	 * 
+	 * }
+	 */
+
+	// count the number or orders for a particular product
+	public int countOrders(int code) {
+
+		String selectQuery = " SELECT * FROM "
+				+ MasterDatabaseHelper.TABLE_PURCHASE + " WHERE "
+				+ MasterDatabaseHelper.KEY_PURCHASE_CODE + " = " + code;
+
+		Log.i(MasterDatabaseHelper.LOG, selectQuery);
+
+		Cursor c = dbRead.rawQuery(selectQuery, null);
+
+		if (c != null) {
+			if (c.moveToFirst()) { // true if record is found
+				return c.getCount(); // return count
+			} else { // no records where found in table. i.e empty cursor
+				return 0;
+			}
+		} else {
+			Log.w(MasterDatabaseHelper.LOG,
+					"Null cursor returned from countOrders");
+			return 0;
+		}
+
+		/*
+		 * not ideal solution, not tested if (c == null) return 0; // no orders
+		 * exist else { return c.getCount(); // return number of orders }
+		 */
 	}
 
 	// fetch a product based on its ID
@@ -224,7 +268,7 @@ public class MasterDatabaseAdapter {
 		return item;
 	}
 
-	// lookup product based on its code
+	// lookup product based on its code from product table
 	public Product getProductByCode(int product_code) {
 
 		String selectQuery = "SELECT * FROM "
@@ -275,30 +319,33 @@ public class MasterDatabaseAdapter {
 
 		return items;
 	}
-	
-	// returns a cursor of table entries
-	public Cursor getPurchaseCursor(){
-		
-		String selectQuery = " SELECT * FROM " + MasterDatabaseHelper.TABLE_PURCHASE;
+
+	// returns a cursor of all purchase entries
+	public Cursor getPurchaseCursor() {
+
+		String selectQuery = " SELECT * FROM "
+				+ MasterDatabaseHelper.TABLE_PURCHASE;
 		Log.e(MasterDatabaseHelper.LOG, selectQuery);
-		
+
 		Cursor c = dbRead.rawQuery(selectQuery, null);
-		
+
 		return c;
-		
+
 	}
-	
+
 	// returns a cursor of product entries
-	public Cursor getProductsCursor(){
-		
-		String selectQuery = " SELECT * FROM " + MasterDatabaseHelper.TABLE_PRODUCTS;
+	public Cursor getProductsCursor() {
+
+		String selectQuery = " SELECT * FROM "
+				+ MasterDatabaseHelper.TABLE_PRODUCTS;
 		Log.e(MasterDatabaseHelper.LOG, selectQuery);
-		
+
 		Cursor c = dbRead.rawQuery(selectQuery, null);
-		
+
 		return c;
-		
+
 	}
+
 	// ///////////////////////
 	// END OF READ METHODS //
 	// ///////////////////////
@@ -322,7 +369,6 @@ public class MasterDatabaseAdapter {
 
 	// Updating a Product
 	public int updateProduct(Product item) {
-
 
 		ContentValues values = new ContentValues();
 		values.put(MasterDatabaseHelper.KEY_PRODUCT_CODE, item.getCode());
@@ -388,6 +434,12 @@ public class MasterDatabaseAdapter {
 		}
 	}
 
+	// remove an ordered item
+	public void deleteOrderByCode(int code) {
+		dbWrite.delete(MasterDatabaseHelper.TABLE_PURCHASE,
+				MasterDatabaseHelper.KEY_PURCHASE_CODE + " = " + code, null);
+	}
+
 	// DELETE DATABASE TABLES
 	public void dropDatabase() {
 		helper.clearDatabase();
@@ -398,14 +450,16 @@ public class MasterDatabaseAdapter {
 	// /////////////////////////
 
 	//
-	public long makePurchase(long stall_id, long product_id) {
+	public long makePurchase(int stall_num, int product_code) {
 
+		MasterDatabaseHelper db = new MasterDatabaseHelper(ctx);
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_STALL_ID, stall_id);
-		values.put(MasterDatabaseHelper.KEY_PRODUCT_ID, product_id);
+		values.put(MasterDatabaseHelper.KEY_PURCHASE_NUMBER, stall_num);
+		values.put(MasterDatabaseHelper.KEY_PURCHASE_CODE, product_code);
 		// values.put(KEY_CREATED_AT, getDateTime());
 
-		long _id = dbWrite.insert(MasterDatabaseHelper.TABLE_PURCHASE, null, values);
+		long _id = db.getWritableDatabase().insert(
+				MasterDatabaseHelper.TABLE_PURCHASE, null, values);
 		return _id;
 	}
 
@@ -433,15 +487,14 @@ public class MasterDatabaseAdapter {
 	 */
 	// delete an order, must be approved by master (TO BE ADDED)
 	// needs verification
-	public int removePurchase(long id, long product_id) {
-		SQLiteDatabase db = helper.getWritableDatabase();
+	public int removePurchase(long id, int product_code) {
 		int numberAffected;
 
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_PRODUCT_ID, product_id);
+		values.put(MasterDatabaseHelper.KEY_PURCHASE_CODE, product_code);
 		// updating row
-		numberAffected = db.update(MasterDatabaseHelper.TABLE_STALLS, values,
-				MasterDatabaseHelper.KEY_ID + " = ?",
+		numberAffected = dbWrite.update(MasterDatabaseHelper.TABLE_PURCHASE,
+				values, MasterDatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(id) });
 		// close database
 		closeDB();
@@ -457,10 +510,10 @@ public class MasterDatabaseAdapter {
 
 	// close database
 	public void closeDB() {
-		
+
 		if (dbRead != null && dbRead.isOpen())
 			dbRead.close();
-		
+
 		if (dbWrite != null && dbWrite.isOpen())
 			dbWrite.close();
 	}
@@ -475,7 +528,7 @@ public class MasterDatabaseAdapter {
 		// Logcat tag
 		private static final String LOG = MasterDatabaseAdapter.class.getName();
 		// Database Version
-		private static final int DATABASE_VERSION = 1;
+		private static final int DATABASE_VERSION = 2;
 		// Database Name
 		private static final String DATABASE_NAME = "posMasterManager";
 		// Table Names
@@ -493,8 +546,8 @@ public class MasterDatabaseAdapter {
 		private static final String KEY_PRODUCT_PRICE = "price";
 
 		// Purchase table column names
-		private static final String KEY_STALL_ID = "stall_id";
-		private static final String KEY_PRODUCT_ID = "product_id";
+		private static final String KEY_PURCHASE_NUMBER = "stall_number";
+		private static final String KEY_PURCHASE_CODE = "product_code";
 		/**** add time of purchase later ****/
 
 		// SQL Create tables statement
@@ -513,9 +566,9 @@ public class MasterDatabaseAdapter {
 		// PURCHASE table
 		private static final String CREATE_TABLE_PURCHASE = "CREATE TABLE "
 				+ TABLE_PURCHASE + "(" + KEY_ID
-				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_STALL_ID
-				+ " INTEGER NOT NULL," + KEY_PRODUCT_ID + " INTEGER NOT NULL"
-				+ ");";
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_PURCHASE_NUMBER
+				+ " INTEGER NOT NULL," + KEY_PURCHASE_CODE
+				+ " INTEGER NOT NULL" + ");";
 
 		private Context ctx;
 
