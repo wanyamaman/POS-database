@@ -61,11 +61,14 @@ public class MainActivity extends Activity {
 		Log.d("Stall count", "Number of stands: "+ db.getAllStalls().size());
 		Log.d("halaal stand", ""+halaal);
 		
+		/*
 		// make purchases
 		long halaal_sale1 = db.makePurchase(halaal.getId(), cheese.getId());
 		long halaal_sale2 = db.makePurchase(halaal.getId(), oil.getId());
 		long chicken_sale1 = db.makePurchase(chicken.getId(), eggs.getId());
 		long halaal_sale3 =  db.makePurchase(halaal.getId(), cheese.getId());
+		
+		*/
 		
 //		Log.d("Stall count", "Number of stands: "+ db.getAllPurchases().size());
 		//close the database

@@ -1,124 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/orderItemHeader"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/priceLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/codeLabel"
-        android:layout_below="@+id/codeLabel"
-        android:layout_marginTop="18dp"
-        android:text="@string/product_price"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/quantityLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/priceLabel"
-        android:layout_below="@+id/priceLabel"
-        android:layout_marginTop="15dp"
-        android:text="@string/quantity"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/codeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:layout_marginTop="53dp"
-        android:layout_toLeftOf="@+id/header"
-        android:text="@string/product_code"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/codeLabel"
-        android:layout_alignRight="@+id/header"
-        android:text="@string/defaultNumber"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/priceLabel"
-        android:layout_alignLeft="@+id/code"
-        android:text="@string/defaultNumber"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/quantityLabel"
-        android:layout_alignLeft="@+id/code"
-        android:text="@string/defaultNumber"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Button
-        android:id="@+id/menuReturnBtn"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:text="@string/productMenu" />
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/checkoutBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/menuReturnBtn"
-        android:layout_below="@+id/menuReturnBtn"
-        android:text="@string/checkout" />
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/orderItemHeader"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/setupReturnBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkoutBtn"
-        android:layout_below="@+id/checkoutBtn"
-        android:text="@string/slaveSetupBtn" />
+        <TextView
+            android:id="@+id/priceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/codeLabel"
+            android:layout_below="@+id/codeLabel"
+            android:layout_marginTop="18dp"
+            android:text="@string/product_price"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/quantityLabel"
-        android:layout_marginTop="26dp"
-        android:gravity="center"
-        android:weightSum="5" >
+        <TextView
+            android:id="@+id/quantityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/priceLabel"
+            android:layout_below="@+id/priceLabel"
+            android:layout_marginTop="15dp"
+            android:text="@string/quantity"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/codeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:layout_marginTop="53dp"
+            android:layout_toLeftOf="@+id/header"
+            android:text="@string/product_code"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/codeLabel"
+            android:layout_alignRight="@+id/header"
+            android:text="@string/defaultNumber"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/priceLabel"
+            android:layout_alignLeft="@+id/code"
+            android:text="@string/defaultNumber"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/quantityLabel"
+            android:layout_alignLeft="@+id/code"
+            android:text="@string/defaultNumber"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
-            android:id="@+id/addBtn"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="@string/addBtn" />
+            android:id="@+id/menuReturnBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="44dp"
+            android:text="@string/productMenu" />
 
         <Button
-            android:id="@+id/deleteBtn"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="@string/deleteBtn" />
-    </LinearLayout>
+            android:id="@+id/checkoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/menuReturnBtn"
+            android:layout_below="@+id/menuReturnBtn"
+            android:text="@string/checkout" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/setupReturnBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/checkoutBtn"
+            android:layout_below="@+id/checkoutBtn"
+            android:text="@string/slaveSetupBtn" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/quantityLabel"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:weightSum="5" >
+
+            <Button
+                android:id="@+id/addBtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="@string/addBtn" />
+
+            <Button
+                android:id="@+id/clearBtn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="@string/clearBtn" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>
