@@ -19,7 +19,7 @@ public class OrderItem extends Activity {
 
 	// layout variables
 	private Button add;
-	private Button delete;
+	private Button clear;
 	private Button menuReturn;
 	private Button checkoutBtn;
 	private Button setupScreenBtn;
@@ -61,7 +61,7 @@ public class OrderItem extends Activity {
         
         // initiate layout variables
         add = (Button) findViewById(R.id.addBtn);
-        delete = (Button) findViewById(R.id.deleteBtn);
+        clear = (Button) findViewById(R.id.clearBtn);
         menuReturn = (Button) findViewById(R.id.menuReturnBtn);
         checkoutBtn = (Button) findViewById(R.id.checkoutBtn);
         setupScreenBtn = (Button) findViewById(R.id.setupReturnBtn);
@@ -79,17 +79,24 @@ public class OrderItem extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				
+				dbAdapter.makePurchase(stall_number, code);
+				// count number of entries in table
+				orderCount();
+				// update count and display
+				updateDisplay();
 			}
 		});
         
-        // deletes an order (deletes from purchase table)
-        delete.setOnClickListener(new OnClickListener() {
+        // clears all orders
+        clear.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				dbAdapter.deleteOrderByCode(code);
+				orderCount();
+				updateDisplay();
+
 				
 			}
 		});
@@ -100,6 +107,7 @@ public class OrderItem extends Activity {
 			@Override
 			public void onClick(View v) {
 				dbAdapter.closeDB();
+				Log.i("OrderItem", "Closed database 1");
 				Intent launchProductMenu = new Intent(OrderItem.this,
 						ProductMenu.class);
 				startActivity(launchProductMenu);
@@ -113,6 +121,7 @@ public class OrderItem extends Activity {
 			@Override
 			public void onClick(View v) {
 				dbAdapter.closeDB();
+				Log.i("OrderItem", "Closed database 2");
 				Intent launchCheckoutScreen = new Intent(OrderItem.this,
 						Checkout.class);
 				startActivity(launchCheckoutScreen);
@@ -126,14 +135,17 @@ public class OrderItem extends Activity {
 			@Override
 			public void onClick(View v) {
 				dbAdapter.closeDB();
+				Log.i("OrderItem", "Closed database 3");
 				Intent launchSetupScreen = new Intent(OrderItem.this,
 						SlaveMain.class);
 				startActivity(launchSetupScreen);
 				
 			}
 		});
-        
-        dbAdapter.closeDB();
+    
+        // not necessary
+  //      dbAdapter.closeDB();
+  //      Log.i("OrderItem", "Closed database 4");
         
 	}
 	
@@ -150,7 +162,8 @@ public class OrderItem extends Activity {
 	// counts the number of orders of this product
 	public void orderCount(){
 		// set quantity value
-		quantity = 0; // replace
+		quantity = dbAdapter.countOrders(code);
+		
 	}
 	
 	// setup stall and product data
@@ -160,6 +173,7 @@ public class OrderItem extends Activity {
         	// force user to add stall number
         	Toast.makeText(getApplicationContext(), "Please insert a stall number!", Toast.LENGTH_LONG).show();
         	dbAdapter.closeDB();
+        	Log.i("OrderItem", "Closed database 5");
         	Intent launchSetup = new Intent(OrderItem.this, SlaveMain.class);
         	startActivity(launchSetup);
         }
@@ -167,6 +181,7 @@ public class OrderItem extends Activity {
         	// force user to add products
         	Toast.makeText(getApplicationContext(), "Please add products to the database!", Toast.LENGTH_LONG).show();
         	dbAdapter.closeDB();
+        	Log.i("OrderItem", "Closed database 6");
         	Intent launchAddProduct = new Intent(OrderItem.this, InsertProduct.class);
         	startActivity(launchAddProduct);
         } else {
@@ -193,8 +208,6 @@ public class OrderItem extends Activity {
 		product = dbAdapter.getProductByCode(code);
 		Log.v("OrderItem", product.toString());
 		price = product.getPrice();
-		
-		// count & set number of orders
 		
 	}
 
