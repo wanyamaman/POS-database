@@ -39,11 +39,13 @@
     <string name="product_price">PRICE:</string>
     <string name="orderItemHeader">Order Item</string>
     <string name="quantity">QUANTITY:</string>
-    <string name="checkout">Purchase Products</string>
+    <string name="checkout">View Basket</string>
     <string name="addBtn">add</string>
     <string name="clearBtn">clear</string>
     <string name="currentStallNum">Current Number:</string>
     <string name="updateBtn">Update</string>
+    <string name="purchase">Purchase Products</string>
+    <string name="checkoutHeader">Checkout Basket</string>
 
 
 </resources>
