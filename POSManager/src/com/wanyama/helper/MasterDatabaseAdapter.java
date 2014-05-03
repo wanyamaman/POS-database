@@ -38,7 +38,7 @@ public class MasterDatabaseAdapter {
 	 * CRUD (Create, Read, Update, Delete) Method definitions
 	 *********************************************************/
 	// //////////////////
-	// CREATE METHODS //
+	// CREATE METHODS  //
 	// //////////////////
 
 	// insert a stall
@@ -325,7 +325,7 @@ public class MasterDatabaseAdapter {
 
 		String selectQuery = " SELECT * FROM "
 				+ MasterDatabaseHelper.TABLE_PURCHASE;
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.i(MasterDatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -338,7 +338,7 @@ public class MasterDatabaseAdapter {
 
 		String selectQuery = " SELECT * FROM "
 				+ MasterDatabaseHelper.TABLE_PRODUCTS;
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.i(MasterDatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 

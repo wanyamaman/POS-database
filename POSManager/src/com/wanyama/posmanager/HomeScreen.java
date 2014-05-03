@@ -1,7 +1,7 @@
 package com.wanyama.posmanager;
 
 import com.wanyama.configuration.MasterMain;
-import com.wanyama.configuration.SlaveMain;
+import com.wanyama.configuration.SlaveSetup;
 
 import android.app.Activity;
 import android.content.Context;
@@ -44,7 +44,7 @@ public class HomeScreen extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(ctx, "Slave Mode Selected", Toast.LENGTH_LONG)
 						.show();
-				Intent launchSlaveSetup = new Intent(HomeScreen.this, SlaveMain.class);
+				Intent launchSlaveSetup = new Intent(HomeScreen.this, SlaveSetup.class);
 				startActivity(launchSlaveSetup);
 			}
 		});

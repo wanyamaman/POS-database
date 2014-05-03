@@ -16,11 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wanyama.configuration.SlaveMain;
+import com.wanyama.configuration.SlaveSetup;
 import com.wanyama.helper.MasterDatabaseAdapter;
 import com.wanyama.model.Product;
 
-public class ProductMenu extends Activity implements OnItemClickListener   {
+public class InventoryList extends Activity implements OnItemClickListener   {
 
 	private MasterDatabaseAdapter db;
 	private Button basketBtn;
@@ -57,7 +57,7 @@ public class ProductMenu extends Activity implements OnItemClickListener   {
 			@Override
 			public void onClick(View v) {
 				db.closeDB();
-				Intent launchSlaveSetup = new Intent(ProductMenu.this,
+				Intent launchSlaveSetup = new Intent(InventoryList.this,
 						Checkout.class);
 				startActivity(launchSlaveSetup);
 			}
@@ -69,8 +69,8 @@ public class ProductMenu extends Activity implements OnItemClickListener   {
 			@Override
 			public void onClick(View v) {
 				db.closeDB();
-				Intent launchSlaveSetup = new Intent(ProductMenu.this,
-						SlaveMain.class);
+				Intent launchSlaveSetup = new Intent(InventoryList.this,
+						SlaveSetup.class);
 				startActivity(launchSlaveSetup);
 				
 			}
@@ -96,7 +96,7 @@ public class ProductMenu extends Activity implements OnItemClickListener   {
 		// close database before navigating 
 		db.closeDB();
 		
-		Intent launchOrderItem = new Intent(ProductMenu.this,
+		Intent launchOrderItem = new Intent(InventoryList.this,
 				OrderItem.class);
 		launchOrderItem.putExtra("code", code);	// pass code to another activity
 		startActivity(launchOrderItem);	// launch new activity

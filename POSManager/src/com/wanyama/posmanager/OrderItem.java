@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wanyama.configuration.InsertProduct;
-import com.wanyama.configuration.SlaveMain;
+import com.wanyama.configuration.SlaveSetup;
 import com.wanyama.helper.MasterDatabaseAdapter;
 import com.wanyama.model.Product;
 
@@ -109,7 +109,7 @@ public class OrderItem extends Activity {
 				dbAdapter.closeDB();
 				Log.i("OrderItem", "Closed database 1");
 				Intent launchProductMenu = new Intent(OrderItem.this,
-						ProductMenu.class);
+						InventoryList.class);
 				startActivity(launchProductMenu);
 				
 			}
@@ -137,7 +137,7 @@ public class OrderItem extends Activity {
 				dbAdapter.closeDB();
 				Log.i("OrderItem", "Closed database 3");
 				Intent launchSetupScreen = new Intent(OrderItem.this,
-						SlaveMain.class);
+						SlaveSetup.class);
 				startActivity(launchSetupScreen);
 				
 			}
@@ -174,7 +174,7 @@ public class OrderItem extends Activity {
         	Toast.makeText(getApplicationContext(), "Please insert a stall number!", Toast.LENGTH_LONG).show();
         	dbAdapter.closeDB();
         	Log.i("OrderItem", "Closed database 5");
-        	Intent launchSetup = new Intent(OrderItem.this, SlaveMain.class);
+        	Intent launchSetup = new Intent(OrderItem.this, SlaveSetup.class);
         	startActivity(launchSetup);
         }
         else if (dbAdapter.countProducts() <=0){
