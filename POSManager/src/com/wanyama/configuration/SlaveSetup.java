@@ -14,16 +14,21 @@ import android.widget.Toast;
 import com.wanyama.helper.MasterDatabaseAdapter;
 import com.wanyama.model.Stall;
 import com.wanyama.posmanager.HomeScreen;
-import com.wanyama.posmanager.ProductMenu;
+import com.wanyama.posmanager.InventoryList;
 import com.wanyama.posmanager.R;
 
-public class SlaveMain extends Activity {
+public class SlaveSetup extends Activity {
 
 	private Button homeBtn;
 	private Button orderMenuBtn;
-	private Button update;
+	private Button updateNumber;
+	private Button updateServerInfo;
 	private TextView inputNumber;
 	private TextView currentNumber;
+	private TextView inputIP;
+	private TextView inputPort;
+	public static String serverIP = "192.168.43.110";
+	public static int serverPort = 5500;
 	private int number;
 	private MasterDatabaseAdapter dbAdapter;
 		
@@ -31,17 +36,20 @@ public class SlaveMain extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.slave_main_menu);
+	    setContentView(R.layout.slave_setup);
 	    dbAdapter = new MasterDatabaseAdapter(getApplicationContext());
 	    
 	    // initialize layout
 	    homeBtn = (Button) findViewById(R.id.homeReturn);
 	    orderMenuBtn = (Button) findViewById(R.id.menu);
-	    update = (Button) findViewById(R.id.updateButton);
+	    updateNumber = (Button) findViewById(R.id.updateButton);
+	    updateServerInfo = (Button) findViewById(R.id.updateNetConfigBtn);
 	    inputNumber = (TextView) findViewById(R.id.stall_id);
 	    currentNumber = (TextView) findViewById(R.id.number);
+	    inputIP = (TextView) findViewById(R.id.ip);
+	    inputPort = (TextView) findViewById(R.id.port);
 	    
-	    // update number in layout
+	    // updateNumber number in layout
 	    updateNumber();
 	    
 	    // BUTTON LISTENERS
@@ -51,7 +59,7 @@ public class SlaveMain extends Activity {
 			@Override
 			public void onClick(View v) {
 				dbAdapter.closeDB();
-				Intent launchHomeScreen = new Intent(SlaveMain.this,
+				Intent launchHomeScreen = new Intent(SlaveSetup.this,
 						HomeScreen.class);
 				startActivity(launchHomeScreen);
 				
@@ -64,15 +72,15 @@ public class SlaveMain extends Activity {
 			@Override
 			public void onClick(View v) {
 				dbAdapter.closeDB();
-				Intent launchProductMenu = new Intent(SlaveMain.this,
-						ProductMenu.class);
+				Intent launchProductMenu = new Intent(SlaveSetup.this,
+						InventoryList.class);
 				startActivity(launchProductMenu);
 				
 			}
 		});
 	    
 	    // updates stall number
-	    update.setOnClickListener(new OnClickListener() {
+	    updateNumber.setOnClickListener(new OnClickListener() {
 			 
 			@Override
 			public void onClick(View v) {
@@ -101,7 +109,7 @@ public class SlaveMain extends Activity {
 					} else // replace old identity with new one
 						{
 							dbAdapter.deleteAllStalls();
-							// clear sales from old stall (alternative: update table number in purchase list)
+							// clear sales from old stall (alternative: updateNumber table number in purchase list)
 							dbAdapter.deleteAllPurchases(); 
 							dbAdapter.createStall(new Stall(number, 0));
 						}
@@ -109,7 +117,31 @@ public class SlaveMain extends Activity {
 				 }
 				
 			}
-		});	    
+		});	   
+	    
+	    updateServerInfo.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			// verify non blank fields
+				// validate entry
+				if (TextUtils.isEmpty(inputIP.getText().toString()) || TextUtils.isEmpty(inputPort.getText().toString())){ // empty input
+					Toast.makeText(getApplicationContext(), "please enter an IP address AND a port number",
+							Toast.LENGTH_LONG).show();
+					Log.w("SlaveSetup", "blank ip or port number");
+				}
+				else{
+					serverIP = inputIP.getText().toString();
+					try {
+						serverPort = Integer.parseInt(inputPort.getText().toString());
+					} catch (NumberFormatException e) {
+						Log.w("SlaveSetup", "failed to convert port number to integer");
+						e.printStackTrace();
+					}
+				}
+				
+			}
+		});
 	    
 	}
 	
@@ -120,7 +152,7 @@ public class SlaveMain extends Activity {
 					Toast.LENGTH_LONG).show();
 			currentNumber.setText(""+99);
 		} else {
-			// update display number from stall table entry			
+			// updateNumber display number from stall table entry			
 			currentNumber.setText(""+dbAdapter.getAllStalls().get(0).getNumber());
 		}
 	}
