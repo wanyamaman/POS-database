@@ -37,11 +37,13 @@
         <activity android:name="com.wanyama.network.WifiManager"></activity>
         <activity android:name="MakeOrders"></activity>
         <activity android:name="com.wanyama.configuration.SlaveSetup"></activity>
-        <activity android:name="ProductMenu"></activity>
+        <activity android:name="InventoryList"></activity>
         <activity android:name="OrderItem"></activity>
         <activity android:name="Checkout"></activity>
-        <service android:name="com.wanyama.network.WriteCSV"></service>
-        <service android:name="Client"></service>
+        <service android:name="com.wanyama.network.ExportCSV"></service>
+        <service android:name="com.wanyama.network.Client"></service>
+        <service android:name="com.wanyama.network.Server"></service>
+        <service android:name="com.wanyama.network.ImportCSV"></service>
     </application>
 
 </manifest>
