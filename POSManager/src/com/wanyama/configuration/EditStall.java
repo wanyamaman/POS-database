@@ -10,13 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Stall;
 import com.wanyama.posmanager.R;
 
 public class EditStall extends Activity implements AdapterView.OnItemClickListener {
 
-	private MasterDatabaseAdapter db;
+	private DatabaseAdapter db;
 	private Context ctx;
 	private ListView list;
 	private List<Stall> listArray;
@@ -28,7 +28,7 @@ public class EditStall extends Activity implements AdapterView.OnItemClickListen
 	    
 	    list = (ListView) findViewById(R.id.listV);
 	    ctx = this;
-	    db = new MasterDatabaseAdapter(ctx);
+	    db = new DatabaseAdapter(ctx);
 	    listArray = db.getAllStalls();
 	    
 	    ArrayAdapter<Stall> adapter = new ArrayAdapter<Stall>(ctx ,android.R.layout.simple_list_item_1, listArray);

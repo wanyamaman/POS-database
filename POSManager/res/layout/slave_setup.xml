@@ -1,120 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
 
-    <TextView
-        android:id="@+id/slave_menu_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/slaveMenuHeader"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/stall_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/slave_menu_header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:hint="@string/stallNumberHint"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/updateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stall_id"
-        android:layout_centerHorizontal="true"
-        android:text="@string/updateBtn" />
-
-    <TextView
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/numberLabel"
-        android:layout_alignBottom="@+id/numberLabel"
-        android:layout_alignRight="@+id/slave_menu_header"
-        android:text="@string/defaultNumber"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/numberLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/slave_menu_header"
-        android:layout_below="@+id/slave_menu_header"
-        android:layout_marginTop="26dp"
-        android:text="@string/currentStallNum"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <Button
-        android:id="@+id/menu"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/homeReturn"
-        android:layout_alignParentLeft="true"
-        android:text="@string/productMenu" />
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/homeReturn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/returnHome" />
+        <TextView
+            android:id="@+id/slave_menu_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/slaveMenuHeader"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
-        android:id="@+id/ip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/port"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="number" 
-        android:hint="@string/ipHint"/>
+        <EditText
+            android:id="@+id/stall_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slave_menu_header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="@string/stallNumberHint"
+            android:inputType="number" >
 
-    <EditText
-        android:id="@+id/port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/stall_id"
-        android:layout_below="@+id/ip"
-        android:ems="10"
-        android:inputType="number" 
-        android:hint="@string/portHint"/>
+            <requestFocus />
+        </EditText>
 
-    <TextView
-        android:id="@+id/ip_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ip"
-        android:layout_alignLeft="@+id/numberLabel"
-        android:layout_marginBottom="18dp"
-        android:text="@string/default_IP"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/stall_id"
+            android:layout_centerHorizontal="true"
+            android:text="@string/updateBtn" />
 
-    <TextView
-        android:id="@+id/port_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ip"
-        android:layout_alignLeft="@+id/ip_text"
-        android:text="@string/default_port"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/numberLabel"
+            android:layout_alignBottom="@+id/numberLabel"
+            android:layout_alignRight="@+id/slave_menu_header"
+            android:text="@string/defaultNumber"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
-        android:id="@+id/updateNetConfigBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/updateButton"
-        android:layout_below="@+id/port"
-        android:text="@string/updateBtn" />
+        <TextView
+            android:id="@+id/numberLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/slave_menu_header"
+            android:layout_below="@+id/slave_menu_header"
+            android:layout_marginTop="26dp"
+            android:text="@string/currentStallNum"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/homeReturn"
+            android:layout_alignParentLeft="true"
+            android:text="@string/productMenu" />
+
+        <TextView
+            android:id="@+id/ip_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ip"
+            android:layout_alignLeft="@+id/numberLabel"
+            android:layout_marginBottom="18dp"
+            android:text="@string/default_IP"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/port_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ip"
+            android:layout_alignLeft="@+id/ip_text"
+            android:text="@string/default_port"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/homeReturn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/returnHome" />
+
+        <Button
+            android:id="@+id/updateNetConfigBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/menu"
+            android:layout_alignLeft="@+id/updateButton"
+            android:layout_marginBottom="16dp"
+            android:text="@string/updateBtn" />
+
+        <EditText
+            android:id="@+id/port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/updateNetConfigBtn"
+            android:layout_alignLeft="@+id/stall_id"
+            android:ems="10"
+            android:hint="@string/portHint"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/port"
+            android:layout_alignLeft="@+id/port"
+            android:ems="10"
+            android:hint="@string/ipHint"
+            android:inputType="number" />
+
+    </RelativeLayout>
+
+</ScrollView>

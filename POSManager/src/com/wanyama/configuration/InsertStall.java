@@ -11,14 +11,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Stall;
 import com.wanyama.posmanager.HomeScreen;
 import com.wanyama.posmanager.R;
 
 public class InsertStall extends Activity {
 
-	private MasterDatabaseAdapter dbAdapter;
+	private DatabaseAdapter dbAdapter;
 	private Context ctx;
 	private long stallCount;
 	private TextView number;
@@ -34,7 +34,7 @@ public class InsertStall extends Activity {
 		setContentView(R.layout.add_stall); // connection to layout
 		// set up variables
 		ctx = this;
-		dbAdapter = new MasterDatabaseAdapter(ctx);
+		dbAdapter = new DatabaseAdapter(ctx);
 
 		// set up view objects
 		number = (TextView) findViewById(R.id.numberInput);

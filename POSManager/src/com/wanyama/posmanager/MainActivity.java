@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Product;
 import com.wanyama.model.Stall;
 
 public class MainActivity extends Activity {
 
-	MasterDatabaseAdapter db;
+	DatabaseAdapter db;
 	
 	
 	@Override
@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_postransaction);
 		
-		db = new MasterDatabaseAdapter(getApplicationContext());
+		db = new DatabaseAdapter(getApplicationContext());
 		
 		db.dropDatabase();
 		

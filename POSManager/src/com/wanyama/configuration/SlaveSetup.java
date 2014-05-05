@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Stall;
 import com.wanyama.posmanager.HomeScreen;
 import com.wanyama.posmanager.InventoryList;
@@ -30,14 +30,14 @@ public class SlaveSetup extends Activity {
 	public static String serverIP = "192.168.43.110";
 	public static int serverPort = 5500;
 	private int number;
-	private MasterDatabaseAdapter dbAdapter;
+	private DatabaseAdapter dbAdapter;
 		
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.slave_setup);
-	    dbAdapter = new MasterDatabaseAdapter(getApplicationContext());
+	    dbAdapter = new DatabaseAdapter(getApplicationContext());
 	    
 	    // initialize layout
 	    homeBtn = (Button) findViewById(R.id.homeReturn);

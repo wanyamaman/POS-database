@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.wanyama.configuration.InsertProduct;
 import com.wanyama.configuration.SlaveSetup;
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Product;
 
 public class OrderItem extends Activity {
@@ -36,7 +36,7 @@ public class OrderItem extends Activity {
 	// purchase variables
 	private int quantity;
 	//database variables
-	private MasterDatabaseAdapter dbAdapter;
+	private DatabaseAdapter dbAdapter;
 	
 	
 	
@@ -54,7 +54,7 @@ public class OrderItem extends Activity {
         Log.i("OrderItem", "fetched code from intent: "+product_code);
         
         // initialize database
-        dbAdapter = new MasterDatabaseAdapter(getApplicationContext());
+        dbAdapter = new DatabaseAdapter(getApplicationContext());
         setupDatabaseValues();
         setupProductValues();
         orderCount();

@@ -3,7 +3,7 @@ package com.wanyama.network;
 import java.io.File;
 import java.io.FileWriter;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 
 import android.app.Service;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.util.Log;
 import android.widget.Toast;
 import au.com.bytecode.opencsv.CSVWriter;
 
-public class WriteCSV extends Service {
+public class ExportCSV extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -34,7 +34,7 @@ public class WriteCSV extends Service {
 	public class exportOrdersToCSV extends AsyncTask<Void, Void, Void> {
 
 		private File dbFile;
-		private MasterDatabaseAdapter dbhelper;
+		private DatabaseAdapter dbhelper;
 		private File directory;
 		private File file;
 		private String success;
@@ -49,7 +49,7 @@ public class WriteCSV extends Service {
 
 			// setup storage directory and access to database file
 			dbFile = getDatabasePath("posMasterManager.sqlite");
-			dbhelper = new MasterDatabaseAdapter(getApplicationContext());
+			dbhelper = new DatabaseAdapter(getApplicationContext());
 			directory = new File(Environment.getExternalStorageDirectory(), "");
 
 			// check if directory exists
@@ -93,6 +93,9 @@ public class WriteCSV extends Service {
 			// alert the user
 			Toast.makeText(getApplicationContext(), success, Toast.LENGTH_LONG)
 					.show();
+			
+			Intent i = new Intent(getApplicationContext(), Client.class);
+			startService(i);
 			// stop service
 			stopSelf();
 		}

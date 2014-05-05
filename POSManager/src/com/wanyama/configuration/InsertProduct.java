@@ -11,13 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Product;
 import com.wanyama.posmanager.R;
 
 public class InsertProduct extends Activity {
 
-	private MasterDatabaseAdapter dbAdapter;
+	private DatabaseAdapter dbAdapter;
 	private Context ctx;
 	private long productCount;
 	private TextView code;
@@ -35,7 +35,7 @@ public class InsertProduct extends Activity {
 
 		// Initialize variables
 		ctx = this;
-		dbAdapter = new MasterDatabaseAdapter(ctx);
+		dbAdapter = new DatabaseAdapter(ctx);
 		
 
 		// assign layout objects to views

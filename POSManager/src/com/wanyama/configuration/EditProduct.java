@@ -14,14 +14,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Product;
 import com.wanyama.posmanager.R;
 
 public class EditProduct extends Activity implements AdapterView.OnItemClickListener {
 
 	// instance variables
-	private MasterDatabaseAdapter db;
+	private DatabaseAdapter db;
 	private Context ctx;
 	private ListView list;
 	private List<Product> listArray;
@@ -33,7 +33,7 @@ public class EditProduct extends Activity implements AdapterView.OnItemClickList
 	
 	    list = (ListView) findViewById(R.id.list_view);
 	    ctx = this;
-	    db = new MasterDatabaseAdapter(ctx);
+	    db = new DatabaseAdapter(ctx);
 	    listArray = db.getAllProducts();
 	    
 	    ArrayAdapter<Product> adapter = new ArrayAdapter<Product>(ctx, android.R.layout.simple_list_item_1, listArray);

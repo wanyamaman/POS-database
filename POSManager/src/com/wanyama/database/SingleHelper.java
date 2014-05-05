@@ -1,4 +1,4 @@
-package com.wanyama.helper;
+package com.wanyama.database;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,12 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wanyama.configuration.SlaveSetup;
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Product;
 
 public class InventoryList extends Activity implements OnItemClickListener   {
 
-	private MasterDatabaseAdapter db;
+	private DatabaseAdapter db;
 	private Button basketBtn;
 	private Button setupReturnBtn;
 	private ListView list;
@@ -35,7 +35,7 @@ public class InventoryList extends Activity implements OnItemClickListener   {
 	    setContentView(R.layout.slave_list_purchase);
 	    
 	    // initiate database
-	    db = new MasterDatabaseAdapter(getApplicationContext());
+	    db = new DatabaseAdapter(getApplicationContext());
 	    
 	    // initiate layout variables
 	    basketBtn = (Button) findViewById(R.id.basketBtn);

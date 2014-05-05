@@ -25,7 +25,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 import com.wanyama.configuration.InsertProduct;
 import com.wanyama.configuration.MasterMain;
-import com.wanyama.helper.MasterDatabaseAdapter;
+import com.wanyama.database.DatabaseAdapter;
 
 public class MakeOrders extends Activity {
 	
@@ -67,7 +67,7 @@ public class MakeOrders extends Activity {
 	public class writeCSV extends AsyncTask<Void, Void, Void>{
 
 		private File dbFile;
-		private MasterDatabaseAdapter dbhelper;
+		private DatabaseAdapter dbhelper;
 		private File directory;
 		private File file;
 		private String success;
@@ -82,7 +82,7 @@ public class MakeOrders extends Activity {
 			
 			// setup storage directory and access to database file
 			dbFile = getDatabasePath("posMasterManager.sqlite");
-			dbhelper = new MasterDatabaseAdapter(getApplicationContext());
+			dbhelper = new DatabaseAdapter(getApplicationContext());
 			directory = new File(Environment.getExternalStorageDirectory(), "");
 			
 			// check if directory exists

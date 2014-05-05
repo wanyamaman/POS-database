@@ -1,4 +1,4 @@
-package com.wanyama.helper;
+package com.wanyama.database;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +15,15 @@ import com.wanyama.model.Product;
 import com.wanyama.model.Stall;
 
 // Adapter class controls access to database methods
-public class MasterDatabaseAdapter {
+public class DatabaseAdapter {
 
-	private MasterDatabaseHelper helper;
+	private DatabaseHelper helper;
 	private Context ctx;
 	SQLiteDatabase dbRead;
 	SQLiteDatabase dbWrite;
 
-	public MasterDatabaseAdapter(Context context) {
-		helper = new MasterDatabaseHelper(context);
+	public DatabaseAdapter(Context context) {
+		helper = new DatabaseHelper(context);
 		ctx = context;
 		dbRead = helper.getReadableDatabase();
 		dbWrite = helper.getWritableDatabase();
@@ -45,15 +45,15 @@ public class MasterDatabaseAdapter {
 	public long createStall(Stall stall) {
 
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_STALL_NUMBER, stall.getNumber()); // booth
+		values.put(DatabaseHelper.KEY_STALL_NUMBER, stall.getNumber()); // booth
 																				// number
-		values.put(MasterDatabaseHelper.KEY_STALL_BALANCE, stall.getBalance()); // stand
+		values.put(DatabaseHelper.KEY_STALL_BALANCE, stall.getBalance()); // stand
 																				// bill
 
 		// primary key generated
 		long stall_id;
 		try {
-			stall_id = dbWrite.insertOrThrow(MasterDatabaseHelper.TABLE_STALLS,
+			stall_id = dbWrite.insertOrThrow(DatabaseHelper.TABLE_STALLS,
 					null, values);
 		} catch (SQLException e) {
 			// alert user of failure
@@ -75,13 +75,13 @@ public class MasterDatabaseAdapter {
 	public long createProduct(Product item) {
 
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_PRODUCT_CODE, item.getCode());
-		values.put(MasterDatabaseHelper.KEY_PRODUCT_PRICE, item.getPrice());
+		values.put(DatabaseHelper.KEY_PRODUCT_CODE, item.getCode());
+		values.put(DatabaseHelper.KEY_PRODUCT_PRICE, item.getPrice());
 
 		long product_id;
 		try {
 			product_id = dbWrite.insertOrThrow(
-					MasterDatabaseHelper.TABLE_PRODUCTS, null, values);
+					DatabaseHelper.TABLE_PRODUCTS, null, values);
 		} catch (SQLException e) {
 			// alert user of failure
 			Toast.makeText(ctx,
@@ -107,10 +107,10 @@ public class MasterDatabaseAdapter {
 	public Stall getStallById(long stall_id) {
 
 		String selectQuery = "SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_STALLS + " WHERE "
-				+ MasterDatabaseHelper.KEY_ID + " = " + stall_id;
+				+ DatabaseHelper.TABLE_STALLS + " WHERE "
+				+ DatabaseHelper.KEY_ID + " = " + stall_id;
 
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.e(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -118,11 +118,11 @@ public class MasterDatabaseAdapter {
 			c.moveToFirst();
 
 		Stall stand = new Stall(
-				c.getInt(c.getColumnIndex(MasterDatabaseHelper.KEY_ID)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.KEY_ID)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_STALL_NUMBER)),
+						.getColumnIndex(DatabaseHelper.KEY_STALL_NUMBER)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_STALL_BALANCE)));
+						.getColumnIndex(DatabaseHelper.KEY_STALL_BALANCE)));
 
 		return stand;
 
@@ -132,10 +132,10 @@ public class MasterDatabaseAdapter {
 	public Stall getStallByNumber(int stall_number) {
 
 		String selectQuery = "SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_STALLS + " WHERE "
-				+ MasterDatabaseHelper.KEY_STALL_NUMBER + " = " + stall_number;
+				+ DatabaseHelper.TABLE_STALLS + " WHERE "
+				+ DatabaseHelper.KEY_STALL_NUMBER + " = " + stall_number;
 
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.e(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -143,11 +143,11 @@ public class MasterDatabaseAdapter {
 			c.moveToFirst();
 
 		Stall stand = new Stall(
-				c.getInt(c.getColumnIndex(MasterDatabaseHelper.KEY_ID)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.KEY_ID)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_STALL_NUMBER)),
+						.getColumnIndex(DatabaseHelper.KEY_STALL_NUMBER)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_STALL_BALANCE)));
+						.getColumnIndex(DatabaseHelper.KEY_STALL_BALANCE)));
 
 		return stand;
 
@@ -157,9 +157,9 @@ public class MasterDatabaseAdapter {
 	public List<Stall> getAllStalls() {
 		List<Stall> stalls = new ArrayList<Stall>();
 		String selectQuery = "SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_STALLS;
+				+ DatabaseHelper.TABLE_STALLS;
 
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.e(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -167,11 +167,11 @@ public class MasterDatabaseAdapter {
 		if (c.moveToFirst()) {
 			do {
 				Stall stand = new Stall(
-						c.getInt(c.getColumnIndex(MasterDatabaseHelper.KEY_ID)),
+						c.getInt(c.getColumnIndex(DatabaseHelper.KEY_ID)),
 						c.getInt(c
-								.getColumnIndex(MasterDatabaseHelper.KEY_STALL_NUMBER)),
+								.getColumnIndex(DatabaseHelper.KEY_STALL_NUMBER)),
 						c.getInt(c
-								.getColumnIndex(MasterDatabaseHelper.KEY_STALL_BALANCE)));
+								.getColumnIndex(DatabaseHelper.KEY_STALL_BALANCE)));
 
 				stalls.add(stand);
 			} while (c.moveToNext());
@@ -183,34 +183,34 @@ public class MasterDatabaseAdapter {
 	public long countStalls() {
 
 		return DatabaseUtils.queryNumEntries(dbRead,
-				MasterDatabaseHelper.TABLE_STALLS);
+				DatabaseHelper.TABLE_STALLS);
 	}
 
 	// count the number of products
 	public long countProducts() {
 		return DatabaseUtils.queryNumEntries(dbRead,
-				MasterDatabaseHelper.TABLE_PRODUCTS);
+				DatabaseHelper.TABLE_PRODUCTS);
 	}
 
 	// count the number of purchase
 	public long countPurchases() {
 		return DatabaseUtils.queryNumEntries(dbRead,
-				MasterDatabaseHelper.TABLE_PURCHASE);
+				DatabaseHelper.TABLE_PURCHASE);
 	}
 
 	/*
 	 * public long countItemOrders(String code){
 	 * 
 	 * String selectQuery = "SELECT COUNT(*) FROM " +
-	 * MasterDatabaseHelper.TABLE_PURCHASE+ " WHERE " +
-	 * MasterDatabaseHelper.KEY_PURCHASE_CODE+ " = " + code;
+	 * DatabaseHelper.TABLE_PURCHASE+ " WHERE " +
+	 * DatabaseHelper.KEY_PURCHASE_CODE+ " = " + code;
 	 * 
-	 * Log.e(MasterDatabaseHelper.LOG, selectQuery);
+	 * Log.e(DatabaseHelper.LOG, selectQuery);
 	 * 
 	 * Cursor c = dbRead.rawQuery(selectQuery, null);
 	 * 
 	 * return DatabaseUtils.queryNumEntries(dbRead,
-	 * MasterDatabaseHelper.TABLE_PURCHASE, code);
+	 * DatabaseHelper.TABLE_PURCHASE, code);
 	 * 
 	 * }
 	 */
@@ -219,10 +219,10 @@ public class MasterDatabaseAdapter {
 	public int countOrders(int code) {
 
 		String selectQuery = " SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_PURCHASE + " WHERE "
-				+ MasterDatabaseHelper.KEY_PURCHASE_CODE + " = " + code;
+				+ DatabaseHelper.TABLE_PURCHASE + " WHERE "
+				+ DatabaseHelper.KEY_PURCHASE_CODE + " = " + code;
 
-		Log.i(MasterDatabaseHelper.LOG, selectQuery);
+		Log.i(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -233,7 +233,7 @@ public class MasterDatabaseAdapter {
 				return 0;
 			}
 		} else {
-			Log.w(MasterDatabaseHelper.LOG,
+			Log.w(DatabaseHelper.LOG,
 					"Null cursor returned from countOrders");
 			return 0;
 		}
@@ -248,10 +248,10 @@ public class MasterDatabaseAdapter {
 	public Product getProductById(long product_id) {
 
 		String selectQuery = "SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_PRODUCTS + " WHERE "
-				+ MasterDatabaseHelper.KEY_ID + " = " + product_id;
+				+ DatabaseHelper.TABLE_PRODUCTS + " WHERE "
+				+ DatabaseHelper.KEY_ID + " = " + product_id;
 
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.e(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -259,11 +259,11 @@ public class MasterDatabaseAdapter {
 			c.moveToFirst();
 
 		Product item = new Product(
-				c.getInt(c.getColumnIndex(MasterDatabaseHelper.KEY_ID)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.KEY_ID)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_PRODUCT_CODE)),
+						.getColumnIndex(DatabaseHelper.KEY_PRODUCT_CODE)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_PRODUCT_PRICE)));
+						.getColumnIndex(DatabaseHelper.KEY_PRODUCT_PRICE)));
 
 		return item;
 	}
@@ -272,10 +272,10 @@ public class MasterDatabaseAdapter {
 	public Product getProductByCode(int product_code) {
 
 		String selectQuery = "SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_PRODUCTS + " WHERE "
-				+ MasterDatabaseHelper.KEY_PRODUCT_CODE + " = " + product_code;
+				+ DatabaseHelper.TABLE_PRODUCTS + " WHERE "
+				+ DatabaseHelper.KEY_PRODUCT_CODE + " = " + product_code;
 
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.e(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -283,11 +283,11 @@ public class MasterDatabaseAdapter {
 			c.moveToFirst();
 
 		Product item = new Product(
-				c.getInt(c.getColumnIndex(MasterDatabaseHelper.KEY_ID)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.KEY_ID)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_PRODUCT_CODE)),
+						.getColumnIndex(DatabaseHelper.KEY_PRODUCT_CODE)),
 				c.getInt(c
-						.getColumnIndex(MasterDatabaseHelper.KEY_PRODUCT_PRICE)));
+						.getColumnIndex(DatabaseHelper.KEY_PRODUCT_PRICE)));
 
 		return item;
 	}
@@ -296,9 +296,9 @@ public class MasterDatabaseAdapter {
 	public List<Product> getAllProducts() {
 		List<Product> items = new ArrayList<Product>();
 		String selectQuery = " SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_PRODUCTS;
+				+ DatabaseHelper.TABLE_PRODUCTS;
 
-		Log.e(MasterDatabaseHelper.LOG, selectQuery);
+		Log.e(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -306,11 +306,11 @@ public class MasterDatabaseAdapter {
 		if (c.moveToFirst()) {
 			do {
 				Product item = new Product(
-						c.getInt((c.getColumnIndex(MasterDatabaseHelper.KEY_ID))),
+						c.getInt((c.getColumnIndex(DatabaseHelper.KEY_ID))),
 						c.getInt(c
-								.getColumnIndex(MasterDatabaseHelper.KEY_PRODUCT_CODE)),
+								.getColumnIndex(DatabaseHelper.KEY_PRODUCT_CODE)),
 						c.getInt(c
-								.getColumnIndex((MasterDatabaseHelper.KEY_PRODUCT_PRICE))));
+								.getColumnIndex((DatabaseHelper.KEY_PRODUCT_PRICE))));
 
 				// add product to list
 				items.add(item);
@@ -324,8 +324,8 @@ public class MasterDatabaseAdapter {
 	public Cursor getPurchaseCursor() {
 
 		String selectQuery = " SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_PURCHASE;
-		Log.i(MasterDatabaseHelper.LOG, selectQuery);
+				+ DatabaseHelper.TABLE_PURCHASE;
+		Log.i(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -337,8 +337,8 @@ public class MasterDatabaseAdapter {
 	public Cursor getProductsCursor() {
 
 		String selectQuery = " SELECT * FROM "
-				+ MasterDatabaseHelper.TABLE_PRODUCTS;
-		Log.i(MasterDatabaseHelper.LOG, selectQuery);
+				+ DatabaseHelper.TABLE_PRODUCTS;
+		Log.i(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
 
@@ -358,12 +358,12 @@ public class MasterDatabaseAdapter {
 	public int updateStall(Stall stand) {
 
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_STALL_NUMBER, stand.getNumber());
-		values.put(MasterDatabaseHelper.KEY_STALL_BALANCE, stand.getBalance());
+		values.put(DatabaseHelper.KEY_STALL_NUMBER, stand.getNumber());
+		values.put(DatabaseHelper.KEY_STALL_BALANCE, stand.getBalance());
 
 		// update row
-		return dbWrite.update(MasterDatabaseHelper.TABLE_STALLS, values,
-				MasterDatabaseHelper.KEY_ID + " = ?",
+		return dbWrite.update(DatabaseHelper.TABLE_STALLS, values,
+				DatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(stand.getId()) });
 	}
 
@@ -371,12 +371,12 @@ public class MasterDatabaseAdapter {
 	public int updateProduct(Product item) {
 
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_PRODUCT_CODE, item.getCode());
-		values.put(MasterDatabaseHelper.KEY_PRODUCT_PRICE, item.getPrice());
+		values.put(DatabaseHelper.KEY_PRODUCT_CODE, item.getCode());
+		values.put(DatabaseHelper.KEY_PRODUCT_PRICE, item.getPrice());
 
 		// update row
-		return dbWrite.update(MasterDatabaseHelper.TABLE_PRODUCTS, values,
-				MasterDatabaseHelper.KEY_ID + " = ?",
+		return dbWrite.update(DatabaseHelper.TABLE_PRODUCTS, values,
+				DatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(item.getId()) });
 	}
 
@@ -389,22 +389,22 @@ public class MasterDatabaseAdapter {
 	// //////////////////
 	// Delete a stall
 	public void deleteStall(long stall_id) {
-		dbWrite.delete(MasterDatabaseHelper.TABLE_STALLS,
-				MasterDatabaseHelper.KEY_ID + " = ?",
+		dbWrite.delete(DatabaseHelper.TABLE_STALLS,
+				DatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(stall_id) });
 	}
 
 	// delete a product
 	public void deleteProduct(long product_id) {
-		dbWrite.delete(MasterDatabaseHelper.TABLE_PRODUCTS,
-				MasterDatabaseHelper.KEY_ID + " = ?",
+		dbWrite.delete(DatabaseHelper.TABLE_PRODUCTS,
+				DatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(product_id) });
 	}
 
 	// delete all Stall records
 	public void deleteAllStalls() {
 		try {
-			dbWrite.delete(MasterDatabaseHelper.TABLE_STALLS, null, null);
+			dbWrite.delete(DatabaseHelper.TABLE_STALLS, null, null);
 		} catch (Exception e) {
 			Toast.makeText(ctx, "Failed to delete all stalls",
 					Toast.LENGTH_LONG).show();
@@ -415,7 +415,7 @@ public class MasterDatabaseAdapter {
 	// delete all Product records
 	public void deleteAllProducts() {
 		try {
-			dbWrite.delete(MasterDatabaseHelper.TABLE_PRODUCTS, null, null);
+			dbWrite.delete(DatabaseHelper.TABLE_PRODUCTS, null, null);
 		} catch (Exception e) {
 			Toast.makeText(ctx, "Failed to delete all products",
 					Toast.LENGTH_LONG).show();
@@ -426,7 +426,7 @@ public class MasterDatabaseAdapter {
 	// delete all Purchase records
 	public void deleteAllPurchases() {
 		try {
-			dbWrite.delete(MasterDatabaseHelper.TABLE_PURCHASE, null, null);
+			dbWrite.delete(DatabaseHelper.TABLE_PURCHASE, null, null);
 		} catch (Exception e) {
 			Toast.makeText(ctx, "Failed to delete all purchases",
 					Toast.LENGTH_LONG).show();
@@ -436,8 +436,8 @@ public class MasterDatabaseAdapter {
 
 	// remove an ordered item
 	public void deleteOrderByCode(int code) {
-		dbWrite.delete(MasterDatabaseHelper.TABLE_PURCHASE,
-				MasterDatabaseHelper.KEY_PURCHASE_CODE + " = " + code, null);
+		dbWrite.delete(DatabaseHelper.TABLE_PURCHASE,
+				DatabaseHelper.KEY_PURCHASE_CODE + " = " + code, null);
 	}
 
 	// DELETE DATABASE TABLES
@@ -452,14 +452,14 @@ public class MasterDatabaseAdapter {
 	//
 	public long makePurchase(int stall_num, int product_code) {
 
-		MasterDatabaseHelper db = new MasterDatabaseHelper(ctx);
+		DatabaseHelper db = new DatabaseHelper(ctx);
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_PURCHASE_NUMBER, stall_num);
-		values.put(MasterDatabaseHelper.KEY_PURCHASE_CODE, product_code);
+		values.put(DatabaseHelper.KEY_PURCHASE_NUMBER, stall_num);
+		values.put(DatabaseHelper.KEY_PURCHASE_CODE, product_code);
 		// values.put(KEY_CREATED_AT, getDateTime());
 
 		long _id = db.getWritableDatabase().insert(
-				MasterDatabaseHelper.TABLE_PURCHASE, null, values);
+				DatabaseHelper.TABLE_PURCHASE, null, values);
 		return _id;
 	}
 
@@ -491,10 +491,10 @@ public class MasterDatabaseAdapter {
 		int numberAffected;
 
 		ContentValues values = new ContentValues();
-		values.put(MasterDatabaseHelper.KEY_PURCHASE_CODE, product_code);
+		values.put(DatabaseHelper.KEY_PURCHASE_CODE, product_code);
 		// updating row
-		numberAffected = dbWrite.update(MasterDatabaseHelper.TABLE_PURCHASE,
-				values, MasterDatabaseHelper.KEY_ID + " = ?",
+		numberAffected = dbWrite.update(DatabaseHelper.TABLE_PURCHASE,
+				values, DatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(id) });
 		// close database
 		closeDB();
@@ -524,9 +524,9 @@ public class MasterDatabaseAdapter {
 	// deleting a stall, removes all purchases from that stall on the purchase
 	// table
 
-	static class MasterDatabaseHelper extends SQLiteOpenHelper {
+	static class DatabaseHelper extends SQLiteOpenHelper {
 		// Logcat tag
-		private static final String LOG = MasterDatabaseAdapter.class.getName();
+		private static final String LOG = DatabaseAdapter.class.getName();
 		// Database Version
 		private static final int DATABASE_VERSION = 2;
 		// Database Name
@@ -573,7 +573,7 @@ public class MasterDatabaseAdapter {
 		private Context ctx;
 
 		// Constructor
-		public MasterDatabaseHelper(Context ctx) {
+		public DatabaseHelper(Context ctx) {
 			super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
 			this.ctx = ctx;
 		}

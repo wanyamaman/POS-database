@@ -1,4 +1,4 @@
-package com.wanyama.posmanager;
+package com.wanyama.network;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -33,6 +33,7 @@ public class Client extends Service {
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int starId){
+		// launch client thread
 		ClientThread thread = new ClientThread();
 		thread.execute();
 		
@@ -54,7 +55,7 @@ public class Client extends Service {
     	private BufferedInputStream bis;
     	
     	public ClientThread(){
-    		file_name = "food.csv";
+    		file_name = "orders.csv";
     	}
     	
 /*    	protected void onPreExecute(){
