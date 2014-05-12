@@ -24,7 +24,7 @@ import android.widget.Toast;
 import au.com.bytecode.opencsv.CSVWriter;
 
 import com.wanyama.configuration.InsertProduct;
-import com.wanyama.configuration.MasterMain;
+import com.wanyama.configuration.Settings;
 import com.wanyama.database.DatabaseAdapter;
 
 public class MakeOrders extends Activity {
