@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.wanyama.configuration.SlaveSetup;
 import com.wanyama.database.DatabaseAdapter;
 import com.wanyama.model.Product;
+import com.wanyama.posmanager.R.color;
 
 public class InventoryList extends Activity implements OnItemClickListener   {
 
@@ -41,6 +42,7 @@ public class InventoryList extends Activity implements OnItemClickListener   {
 	    basketBtn = (Button) findViewById(R.id.basketBtn);
 	    setupReturnBtn = (Button) findViewById(R.id.setupBtn);
 	    list = (ListView) findViewById(R.id.list_view);
+	    list.setBackgroundColor(color.black);
 	    
 	    // set up inventory list
 	    productArray = db.getAllProducts();
