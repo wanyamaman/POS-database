@@ -192,35 +192,35 @@ public class DatabaseAdapter {
 				DatabaseHelper.TABLE_PRODUCTS);
 	}
 
-	// count the number of purchase
-	public long countPurchases() {
+	// count the total number of orders for all products
+	public long countTotalOrders() {
 		return DatabaseUtils.queryNumEntries(dbRead,
-				DatabaseHelper.TABLE_PURCHASE);
+				DatabaseHelper.TABLE_ORDERS);
 	}
 
 	/*
 	 * public long countItemOrders(String code){
 	 * 
 	 * String selectQuery = "SELECT COUNT(*) FROM " +
-	 * DatabaseHelper.TABLE_PURCHASE+ " WHERE " +
-	 * DatabaseHelper.KEY_PURCHASE_CODE+ " = " + code;
+	 * DatabaseHelper.TABLE_ORDERS+ " WHERE " +
+	 * DatabaseHelper.KEY_ORDER_CODE+ " = " + code;
 	 * 
 	 * Log.e(DatabaseHelper.LOG, selectQuery);
 	 * 
 	 * Cursor c = dbRead.rawQuery(selectQuery, null);
 	 * 
 	 * return DatabaseUtils.queryNumEntries(dbRead,
-	 * DatabaseHelper.TABLE_PURCHASE, code);
+	 * DatabaseHelper.TABLE_ORDERS, code);
 	 * 
 	 * }
 	 */
 
 	// count the number or orders for a particular product
-	public int countOrders(int code) {
+	public int countProductOrders(int code) {
 
 		String selectQuery = " SELECT * FROM "
-				+ DatabaseHelper.TABLE_PURCHASE + " WHERE "
-				+ DatabaseHelper.KEY_PURCHASE_CODE + " = " + code;
+				+ DatabaseHelper.TABLE_ORDERS + " WHERE "
+				+ DatabaseHelper.KEY_ORDER_CODE + " = " + code;
 
 		Log.i(DatabaseHelper.LOG, selectQuery);
 
@@ -324,7 +324,7 @@ public class DatabaseAdapter {
 	public Cursor getPurchaseCursor() {
 
 		String selectQuery = " SELECT * FROM "
-				+ DatabaseHelper.TABLE_PURCHASE;
+				+ DatabaseHelper.TABLE_ORDERS;
 		Log.i(DatabaseHelper.LOG, selectQuery);
 
 		Cursor c = dbRead.rawQuery(selectQuery, null);
@@ -423,10 +423,10 @@ public class DatabaseAdapter {
 		}
 	}
 
-	// delete all Purchase records
-	public void deleteAllPurchases() {
+	// delete all Order records
+	public void deleteAllOrders() {
 		try {
-			dbWrite.delete(DatabaseHelper.TABLE_PURCHASE, null, null);
+			dbWrite.delete(DatabaseHelper.TABLE_ORDERS, null, null);
 		} catch (Exception e) {
 			Toast.makeText(ctx, "Failed to delete all purchases",
 					Toast.LENGTH_LONG).show();
@@ -436,8 +436,8 @@ public class DatabaseAdapter {
 
 	// remove an ordered item
 	public void deleteOrderByCode(int code) {
-		dbWrite.delete(DatabaseHelper.TABLE_PURCHASE,
-				DatabaseHelper.KEY_PURCHASE_CODE + " = " + code, null);
+		dbWrite.delete(DatabaseHelper.TABLE_ORDERS,
+				DatabaseHelper.KEY_ORDER_CODE + " = " + code, null);
 	}
 
 	// DELETE DATABASE TABLES
@@ -450,16 +450,16 @@ public class DatabaseAdapter {
 	// /////////////////////////
 
 	//
-	public long makePurchase(int stall_num, int product_code) {
+	public long placeOrder(int stall_num, int product_code) {
 
 		DatabaseHelper db = new DatabaseHelper(ctx);
 		ContentValues values = new ContentValues();
-		values.put(DatabaseHelper.KEY_PURCHASE_NUMBER, stall_num);
-		values.put(DatabaseHelper.KEY_PURCHASE_CODE, product_code);
+		values.put(DatabaseHelper.KEY_ORDER_NUMBER, stall_num);
+		values.put(DatabaseHelper.KEY_ORDER_CODE, product_code);
 		// values.put(KEY_CREATED_AT, getDateTime());
 
 		long _id = db.getWritableDatabase().insert(
-				DatabaseHelper.TABLE_PURCHASE, null, values);
+				DatabaseHelper.TABLE_ORDERS, null, values);
 		return _id;
 	}
 
@@ -469,7 +469,7 @@ public class DatabaseAdapter {
 	 * to calculate bill // Fetch all products from a table public List<Product>
 	 * getAllProductsFromTable(Stall stand) { List<Product> items = new
 	 * ArrayList<Product>(); String selectQuery = " SELECT * FROM " +
-	 * TABLE_PURCHASE;
+	 * TABLE_ORDERS;
 	 * 
 	 * Log.e(LOG, selectQuery);
 	 * 
@@ -487,13 +487,13 @@ public class DatabaseAdapter {
 	 */
 	// delete an order, must be approved by master (TO BE ADDED)
 	// needs verification
-	public int removePurchase(long id, int product_code) {
+	public int removeOrder(long id, int product_code) {
 		int numberAffected;
 
 		ContentValues values = new ContentValues();
-		values.put(DatabaseHelper.KEY_PURCHASE_CODE, product_code);
+		values.put(DatabaseHelper.KEY_ORDER_CODE, product_code);
 		// updating row
-		numberAffected = dbWrite.update(DatabaseHelper.TABLE_PURCHASE,
+		numberAffected = dbWrite.update(DatabaseHelper.TABLE_ORDERS,
 				values, DatabaseHelper.KEY_ID + " = ?",
 				new String[] { String.valueOf(id) });
 		// close database
@@ -528,13 +528,13 @@ public class DatabaseAdapter {
 		// Logcat tag
 		private static final String LOG = DatabaseAdapter.class.getName();
 		// Database Version
-		private static final int DATABASE_VERSION = 2;
+		private static final int DATABASE_VERSION = 3;
 		// Database Name
 		private static final String DATABASE_NAME = "posMasterManager";
 		// Table Names
 		private static final String TABLE_STALLS = "stalls";
 		private static final String TABLE_PRODUCTS = "products";
-		private static final String TABLE_PURCHASE = "purchases";
+		private static final String TABLE_ORDERS = "orders";
 		// Shared Column Names
 		private static final String KEY_ID = "_id";
 		// private static final String KEY_CREATED_AT = "created_at";
@@ -546,8 +546,8 @@ public class DatabaseAdapter {
 		private static final String KEY_PRODUCT_PRICE = "price";
 
 		// Purchase table column names
-		private static final String KEY_PURCHASE_NUMBER = "stall_number";
-		private static final String KEY_PURCHASE_CODE = "product_code";
+		private static final String KEY_ORDER_NUMBER = "stall_number";
+		private static final String KEY_ORDER_CODE = "product_code";
 		/**** add time of purchase later ****/
 
 		// SQL Create tables statement
@@ -564,10 +564,10 @@ public class DatabaseAdapter {
 				+ " INTEGER NOT NULL UNIQUE," + KEY_PRODUCT_PRICE
 				+ " INTEGER NOT NULL" + ");";
 		// PURCHASE table
-		private static final String CREATE_TABLE_PURCHASE = "CREATE TABLE "
-				+ TABLE_PURCHASE + "(" + KEY_ID
-				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_PURCHASE_NUMBER
-				+ " INTEGER NOT NULL," + KEY_PURCHASE_CODE
+		private static final String CREATE_TABLE_ORDERS = "CREATE TABLE "
+				+ TABLE_ORDERS + "(" + KEY_ID
+				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_ORDER_NUMBER
+				+ " INTEGER NOT NULL," + KEY_ORDER_CODE
 				+ " INTEGER NOT NULL" + ");";
 
 		private Context ctx;
@@ -585,7 +585,7 @@ public class DatabaseAdapter {
 			try {
 				db.execSQL(CREATE_TABLE_PRODUCTS);
 				db.execSQL(CREATE_TABLE_STALLS);
-				db.execSQL(CREATE_TABLE_PURCHASE);
+				db.execSQL(CREATE_TABLE_ORDERS);
 			} catch (SQLException e) {
 				Toast.makeText(ctx, "failed to create the database",
 						Toast.LENGTH_LONG).show();
@@ -602,7 +602,7 @@ public class DatabaseAdapter {
 			try {
 				db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
 				db.execSQL("DROP TABLE IF EXISTS " + TABLE_STALLS);
-				db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+				db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDERS);
 			} catch (SQLException e) {
 				Toast.makeText(ctx, "failed to upgrade the database",
 						Toast.LENGTH_LONG).show();
@@ -622,7 +622,7 @@ public class DatabaseAdapter {
 				super.getWritableDatabase().execSQL(
 						"DROP TABLE IF EXISTS " + TABLE_STALLS);
 				super.getWritableDatabase().execSQL(
-						"DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+						"DROP TABLE IF EXISTS " + TABLE_ORDERS);
 			} catch (SQLException e) {
 				Toast.makeText(ctx, "failed to clear the database",
 						Toast.LENGTH_LONG).show();

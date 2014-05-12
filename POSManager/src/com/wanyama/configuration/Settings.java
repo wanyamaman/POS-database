@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.wanyama.posmanager.HomeScreen;
 import com.wanyama.posmanager.R;
 
-public class MasterMain extends Activity {
+public class Settings extends Activity {
 
 	private Context ctx;
 	private Button addStall;
@@ -37,7 +37,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchAddStallActivity = new Intent(MasterMain.this, InsertStall.class);
+				Intent launchAddStallActivity = new Intent(Settings.this, InsertStall.class);
 				startActivity(launchAddStallActivity);
 				
 			}
@@ -48,7 +48,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchEditStall = new Intent(MasterMain.this, EditStall.class);
+				Intent launchEditStall = new Intent(Settings.this, EditStall.class);
 				startActivity(launchEditStall);
 				
 			}
@@ -59,7 +59,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchAddProduct= new Intent(MasterMain.this, InsertProduct.class);
+				Intent launchAddProduct= new Intent(Settings.this, InsertProduct.class);
 				startActivity(launchAddProduct);
 				
 			}
@@ -70,7 +70,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchEditProduct = new Intent(MasterMain.this, EditProduct.class);
+				Intent launchEditProduct = new Intent(Settings.this, EditProduct.class);
 				startActivity(launchEditProduct);
 				
 			}
@@ -81,7 +81,7 @@ public class MasterMain extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchHomeScreen = new Intent(MasterMain.this, HomeScreen.class);
+				Intent launchHomeScreen = new Intent(Settings.this, HomeScreen.class);
 				startActivity(launchHomeScreen);
 				
 			}

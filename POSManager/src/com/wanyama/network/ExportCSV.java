@@ -25,6 +25,7 @@ public class ExportCSV extends Service {
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int starId){
+		// start thread
 		exportOrdersToCSV thread = new exportOrdersToCSV();
 		thread.execute();
 		

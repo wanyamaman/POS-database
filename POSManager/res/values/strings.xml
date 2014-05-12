@@ -32,7 +32,7 @@
     <string name="returnHome">Return to Home Screen</string>
     <string name="slaveMenuHeader">Slave Device Setup</string>
     <string name="productMenu">Product Menu</string>
-    <string name="Menu">Menu</string>
+    <string name="inventoryHeader">Inventory List</string>
     <string name="basket">View Basket</string>
     <string name="slaveSetupBtn">Return to Setup Screen</string>
     <string name="product_code">CODE:</string>
@@ -46,6 +46,12 @@
     <string name="updateBtn">Update</string>
     <string name="purchase">Purchase Products</string>
     <string name="checkoutHeader">Checkout Basket</string>
+    <string name="default_IP">IP address is unconfigured</string>
+    <string name="default_port">No port selected</string>
+    <string name="ipHint">Enter IPv4 address</string>
+    <string name="portHint">Enter a port number</string>
+    <color name="black">#00000000</color>
+    <color name="red">#ffff0000</color>
 
 
 </resources>

@@ -40,10 +40,10 @@ public class SlaveSetup extends Activity {
 	    dbAdapter = new DatabaseAdapter(getApplicationContext());
 	    
 	    // initialize layout
-	    homeBtn = (Button) findViewById(R.id.homeReturn);
+	    homeBtn = (Button) findViewById(R.id.homeBtn);
 	    orderMenuBtn = (Button) findViewById(R.id.menu);
 	    updateNumber = (Button) findViewById(R.id.updateButton);
-	    updateServerInfo = (Button) findViewById(R.id.updateNetConfigBtn);
+	    updateServerInfo = (Button) findViewById(R.id.updateNetInfoBtn);
 	    inputNumber = (TextView) findViewById(R.id.stall_id);
 	    currentNumber = (TextView) findViewById(R.id.number);
 	    inputIP = (TextView) findViewById(R.id.ip);
@@ -110,7 +110,7 @@ public class SlaveSetup extends Activity {
 						{
 							dbAdapter.deleteAllStalls();
 							// clear sales from old stall (alternative: updateNumber table number in purchase list)
-							dbAdapter.deleteAllPurchases(); 
+							dbAdapter.deleteAllOrders(); 
 							dbAdapter.createStall(new Stall(number, 0));
 						}
 					updateNumber();
@@ -150,7 +150,7 @@ public class SlaveSetup extends Activity {
 		if (dbAdapter.countStalls() <= 0){
 			Toast.makeText(getApplicationContext(), "no stall record exists",
 					Toast.LENGTH_LONG).show();
-			currentNumber.setText(""+99);
+			currentNumber.setText(""+0000);
 		} else {
 			// updateNumber display number from stall table entry			
 			currentNumber.setText(""+dbAdapter.getAllStalls().get(0).getNumber());

@@ -83,7 +83,7 @@ public class InsertProduct extends Activity {
 			public void onClick(View v) {
 				dbAdapter.closeDB();
 				Intent launchMasterMain = new Intent(InsertProduct.this,
-						MasterMain.class);
+						Settings.class);
 				startActivity(launchMasterMain);
 			}
 		});

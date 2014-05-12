@@ -80,7 +80,7 @@ public class OrderItem extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-				dbAdapter.makePurchase(stall_number, code);
+				dbAdapter.placeOrder(stall_number, code);
 				// count number of entries in table
 				orderCount();
 				// update count and display
@@ -162,7 +162,7 @@ public class OrderItem extends Activity {
 	// counts the number of orders of this product
 	public void orderCount(){
 		// set quantity value
-		quantity = dbAdapter.countOrders(code);
+		quantity = dbAdapter.countProductOrders(code);
 		
 	}
 	
