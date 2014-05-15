@@ -32,5 +32,15 @@
         android:layout_centerVertical="true"
         android:text="Join a Network" 
         android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/importBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slave"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="import" />
     
 </RelativeLayout>

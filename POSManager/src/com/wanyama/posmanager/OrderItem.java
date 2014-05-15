@@ -143,9 +143,6 @@ public class OrderItem extends Activity {
 			}
 		});
     
-        // not necessary
-  //      dbAdapter.closeDB();
-  //      Log.i("OrderItem", "Closed database 4");
         
 	}
 	

@@ -51,7 +51,17 @@ public class Stall {
 		return balance;
 	}
 	
+	// stall printout format
+	@Override
 	public String toString(){
-		return ("ID: "+ id+ "  Stall Number: "+stall_number+ " "+"Balance: R"+balance);
+		// build display string line by line
+		StringBuilder result = new StringBuilder();
+		String newLine = System.getProperty("line.separator");
+		
+		result.append("Number: "+stall_number+newLine);
+		result.append("Balance: "+balance);
+		
+		
+		return result.toString();
 	}
 }

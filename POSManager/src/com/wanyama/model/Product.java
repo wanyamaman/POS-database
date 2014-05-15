@@ -49,8 +49,10 @@ public class Product {
 		return price;
 	}
 	
+	// product printout format
 	@Override
 	public String toString(){
+		// build display string line by line
 		StringBuilder result = new StringBuilder();
 		String newLine = System.getProperty("line.separator");
 		
