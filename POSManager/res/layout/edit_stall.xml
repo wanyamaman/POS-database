@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="@string/viewStall"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/balanceLabel"
+        android:layout_alignBottom="@+id/balanceLabel"
+        android:layout_alignRight="@+id/number"
+        android:text="@string/defaultNumber"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/updateBtn" />
+
+    <EditText
+        android:id="@+id/numberInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/update"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/stallNumberHint" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/stallList"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="58dp"
+        android:text="@string/settingsReturn" />
+
+    <Button
+        android:id="@+id/stallList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/settings"
+        android:layout_centerHorizontal="true"
+        android:text="@string/stallMenu" />
+
+    <TextView
+        android:id="@+id/numberLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/numberInput"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="25dp"
+        android:text="@string/currentStallNum"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/balanceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/numberLabel"
+        android:layout_below="@+id/numberLabel"
+        android:layout_marginTop="16dp"
+        android:text="@string/stallBalance"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/balanceLabel"
+        android:layout_toRightOf="@+id/update"
+        android:text="@string/defaultNumber"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

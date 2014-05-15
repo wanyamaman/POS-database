@@ -48,7 +48,7 @@ public class Settings extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchEditStall = new Intent(Settings.this, EditStall.class);
+				Intent launchEditStall = new Intent(Settings.this, ViewStalls.class);
 				startActivity(launchEditStall);
 				
 			}
@@ -70,7 +70,7 @@ public class Settings extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent launchEditProduct = new Intent(Settings.this, EditProduct.class);
+				Intent launchEditProduct = new Intent(Settings.this, ViewProducts.class);
 				startActivity(launchEditProduct);
 				
 			}

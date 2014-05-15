@@ -92,8 +92,8 @@ public class InventoryList extends Activity implements OnItemClickListener   {
 		tokens = new StringTokenizer(viewString);
 		
 		// iterate through list view text
-		tokens.nextToken(); // skip code label
-		code = tokens.nextToken(); // product code value
+		tokens.nextToken(); // skip 'CODE' label
+		code = tokens.nextToken(); // product code VALUE
 		
 		// close database before navigating 
 		db.closeDB();

@@ -52,6 +52,13 @@
     <string name="portHint">Enter a port number</string>
     <color name="black">#00000000</color>
     <color name="red">#ffff0000</color>
+    <string name="editStallHeader">Edit Stall</string>
+    <string name="editProductHeader">Edit Product</string>
+    <string name="settingsReturn">Return to settings</string>
+    <string name="stallMenu">List of stalls</string>
+    <string name="currentProductCode">Current Code:</string>
+    <string name="CurrentProductPrice">Current Price:</string>
+    <string name="productList">List of Products</string>
 
 
 </resources>
