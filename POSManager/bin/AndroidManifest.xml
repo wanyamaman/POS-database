@@ -30,9 +30,9 @@
         </activity>
         <activity android:name="com.wanyama.configuration.InsertStall"></activity>
         <activity android:name="com.wanyama.configuration.EditTable"></activity>
-        <activity android:name="com.wanyama.configuration.EditStall"></activity>
+        <activity android:name="com.wanyama.configuration.ViewStalls"></activity>
         <activity android:name="com.wanyama.configuration.InsertProduct"></activity>
-        <activity android:name="com.wanyama.configuration.EditProduct"></activity>
+        <activity android:name="com.wanyama.configuration.ViewProducts"></activity>
         <activity android:name="com.wanyama.configuration.Settings"></activity>
         <activity android:name="com.wanyama.network.WifiManager"></activity>
         <activity android:name="MakeOrders"></activity>
@@ -44,6 +44,8 @@
         <service android:name="com.wanyama.network.Client"></service>
         <service android:name="com.wanyama.network.Server"></service>
         <service android:name="com.wanyama.network.ImportCSV"></service>
+        <activity android:name="com.wanyama.configuration.EditStall"></activity>
+        <activity android:name="com.wanyama.configuration.EditProduct"></activity>
     </application>
 
 </manifest>
